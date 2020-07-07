@@ -2,19 +2,22 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>线性筛素数 | Gridea</title>
+<title>KMP | Gridea</title>
 <link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594140249267">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://1033180517.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="线性筛素数 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="KMP | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="const ll N = 10000050;
-ll prime[N] = {0};    //记录质数
-ll num_prime =0;     //表示质数数量
-int isNotPrime[N] = {1, 1};    //记录n是否..." />
+    <meta name="description" content="//文本串和模式串
+string str,pat;
+//next[i]表示模式串前i个字符组成的串其前缀后缀相通的最长长度
+//也是在i出匹配失败时该跳转的位置
+int next[10002];
+//得到next数组
+void getnex..." />
     <meta name="keywords" content="算法" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -77,7 +80,7 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              线性筛素数
+              KMP
             </h2>
             <div class="post-info">
               <span>
@@ -95,21 +98,35 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>const ll N = 10000050;<br>
-ll prime[N] = {0};    //记录质数<br>
-ll num_prime =0;     //表示质数数量<br>
-int isNotPrime[N] = {1, 1};    //记录n是否为质数</p>
-<p>int main(){<br>
-for(ll i=2;i&lt;N;i++){<br>
-if(!isNotPrime[i]){        // i为质数，则记录<br>
-prime[num_prime++]=i;<br>
+                <p>//文本串和模式串<br>
+string str,pat;</p>
+<p>//next[i]表示模式串前i个字符组成的串其前缀后缀相通的最长长度<br>
+//也是在i出匹配失败时该跳转的位置<br>
+int next[10002];</p>
+<p>//得到next数组<br>
+void getnext(){<br>
+int i=0,j=-1;<br>
+next[0]=-1;<br>
+while(i&lt;pat.size()){<br>
+if(j==-1||pat[i]==pat[j]){<br>
+next[++i]=++j;<br>
 }<br>
-for(ll j=0;j&lt;num_prime&amp;&amp;i<em>prime[j]&lt;N;j++){    // 质数</em>i为合数，记录<br>
-isNotPrime[i * prime[j]] = 1;<br>
-if(!(i%prime[j]))  //防止重复筛选<br>
-break;<br>
+else j=next[j];<br>
 }<br>
+}</p>
+<p>//返回文本串中模式串出现的次数<br>
+int kmp(){<br>
+int i=0,j=0,len1=str.size(),len2=pat.size();<br>
+int ans=0;<br>
+while(i&lt;len1){<br>
+if(j==-1||str[i]<mark>pat[j]){<br>
+i++;<br>
+j++;<br>
 }<br>
+else j=next[j];<br>
+if(j</mark>len2)ans++;<br>
+}<br>
+return ans;<br>
 }</p>
 
               </div>
@@ -123,9 +140,9 @@ break;<br>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://1033180517.github.io/post/hello-gridea/">
+            <a href="https://1033180517.github.io/post/xian-duan-shu/">
               <h3 class="post-title">
-                Hello Gridea
+                线段树
               </h3>
             </a>
           </div>

@@ -2,19 +2,20 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>线性筛素数 | Gridea</title>
+<title>最小生成树 | Gridea</title>
 <link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594140249267">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://1033180517.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="线性筛素数 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="最小生成树 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="const ll N = 10000050;
-ll prime[N] = {0};    //记录质数
-ll num_prime =0;     //表示质数数量
-int isNotPrime[N] = {1, 1};    //记录n是否..." />
+    <meta name="description" content="1.Kruskal   O(ElogE)
+//E为边数
+//并查集，将边从小到大排序，另取一无边同结点图，遍历边，如果边的两个结点为不同连通分量，则连接边
+int n,s,ans=0,num=0,fa[10002],m=0;
+struct ..." />
     <meta name="keywords" content="算法" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -77,14 +78,14 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              线性筛素数
+              最小生成树
             </h2>
             <div class="post-info">
               <span>
                 2020-07-08
               </span>
               <span>
-                1 min read
+                3 min read
               </span>
               
                 <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="post-tag">
@@ -95,21 +96,83 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>const ll N = 10000050;<br>
-ll prime[N] = {0};    //记录质数<br>
-ll num_prime =0;     //表示质数数量<br>
-int isNotPrime[N] = {1, 1};    //记录n是否为质数</p>
-<p>int main(){<br>
-for(ll i=2;i&lt;N;i++){<br>
-if(!isNotPrime[i]){        // i为质数，则记录<br>
-prime[num_prime++]=i;<br>
+                <p>1.Kruskal   O(ElogE)</p>
+<p>//E为边数</p>
+<p>//并查集，将边从小到大排序，另取一无边同结点图，遍历边，如果边的两个结点为不同连通分量，则连接边</p>
+<p>int n,s,ans=0,num=0,fa[10002],m=0;<br>
+struct edge{<br>
+int x,y,w;<br>
+}dd[100002];</p>
+<p>int find(int xx){<br>
+if(fa[xx]<mark>xx)return xx;<br>
+return fa[xx]=find(fa[xx]);<br>
 }<br>
-for(ll j=0;j&lt;num_prime&amp;&amp;i<em>prime[j]&lt;N;j++){    // 质数</em>i为合数，记录<br>
-isNotPrime[i * prime[j]] = 1;<br>
-if(!(i%prime[j]))  //防止重复筛选<br>
-break;<br>
+bool cmp(edge a,edge b){<br>
+if(a.w&lt;b.w)return 1;<br>
+return 0;<br>
+}<br>
+int main(){<br>
+cin&gt;&gt;n;<br>
+for(int i=1;i&lt;=n;i++){<br>
+fa[i]=i;<br>
+for(int j=1;j&lt;=n;j++){<br>
+scanf(“%d”,&amp;s);<br>
+if(i&lt;j){<br>
+num++;<br>
+dd[num].x=i;<br>
+dd[num].y=j;<br>
+dd[num].w=s;<br>
 }<br>
 }<br>
+}<br>
+sort(dd+1,dd+num+1,cmp);<br>
+for(int i=1;i&lt;=num;i++){<br>
+if(find(dd[i].x)!=find(dd[i].y)){<br>
+ans+=dd[i].w;<br>
+fa[find(dd[i].x)]=dd[i].y;<br>
+m++;<br>
+if(m</mark>n-1)break;<br>
+}<br>
+}<br>
+cout&lt;&lt;ans&lt;&lt;endl;<br>
+}<br>
+2.Prim   O(n^2)</p>
+<p>//所有结点为白色，将结点1染蓝，将连接蓝-白结点的最短边入树并将白结点染蓝，重复n-1次</p>
+<p>int n,s,vis[10002],num=0,b,w,ans=0;<br>
+struct node{<br>
+int x,y,w;<br>
+bool operator&lt;(node a)const{<br>
+return w&gt;a.w;<br>
+}<br>
+};<br>
+vector<node>q[10002];<br>
+priority_queue<node>p;<br>
+int main(){<br>
+cin&gt;&gt;n;<br>
+memset(vis,0,sizeof(vis));<br>
+for(int i=1;i&lt;=n;i++){<br>
+for(int j=1;j&lt;=n;j++){<br>
+scanf(“%d”,&amp;s);<br>
+if(i==j)continue;<br>
+q[i].push_back({i,j,s});<br>
+q[j].push_back({j,i,s});<br>
+}<br>
+}<br>
+vis[1]=1;<br>
+for(int i=0;i&lt;q[1].size();i++){<br>
+p.push(q[1][i]);<br>
+}<br>
+while(num&lt;n-1){<br>
+b=p.top().y; w=p.top().w; p.pop();<br>
+if(vis[b])continue;<br>
+vis[b]=1;<br>
+ans+=w;<br>
+num++;<br>
+for(int i=0;i&lt;q[b].size();i++){<br>
+p.push(q[b][i]);<br>
+}<br>
+}<br>
+cout&lt;&lt;ans&lt;&lt;endl;<br>
 }</p>
 
               </div>
@@ -123,9 +186,9 @@ break;<br>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://1033180517.github.io/post/hello-gridea/">
+            <a href="https://1033180517.github.io/post/shu-zhuang-shu-zu/">
               <h3 class="post-title">
-                Hello Gridea
+                树状数组
               </h3>
             </a>
           </div>

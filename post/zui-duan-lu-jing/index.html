@@ -2,19 +2,21 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>线性筛素数 | Gridea</title>
+<title>最短路径 | Gridea</title>
 <link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594140249267">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://1033180517.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="线性筛素数 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="最短路径 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="const ll N = 10000050;
-ll prime[N] = {0};    //记录质数
-ll num_prime =0;     //表示质数数量
-int isNotPrime[N] = {1, 1};    //记录n是否..." />
+    <meta name="description" content="1.Floyd O(n^3)
+//暴力松弛，优化后，Map[i][j]表示结点i到结点j的最短距离
+int n，Map[1005][1005];
+int main(){
+cin&gt;&gt;n;
+for(int i=1;i&lt;=n;i..." />
     <meta name="keywords" content="算法" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -77,14 +79,14 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              线性筛素数
+              最短路径
             </h2>
             <div class="post-info">
               <span>
                 2020-07-08
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
                 <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="post-tag">
@@ -95,19 +97,61 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>const ll N = 10000050;<br>
-ll prime[N] = {0};    //记录质数<br>
-ll num_prime =0;     //表示质数数量<br>
-int isNotPrime[N] = {1, 1};    //记录n是否为质数</p>
-<p>int main(){<br>
-for(ll i=2;i&lt;N;i++){<br>
-if(!isNotPrime[i]){        // i为质数，则记录<br>
-prime[num_prime++]=i;<br>
+                <p>1.Floyd O(n^3)</p>
+<p>//暴力松弛，优化后，Map[i][j]表示结点i到结点j的最短距离</p>
+<p>int n，Map[1005][1005];<br>
+int main(){<br>
+cin&gt;&gt;n;<br>
+for(int i=1;i&lt;=n;i++){<br>
+for(int j=1;j&lt;=n;j++){<br>
+scanf(“%d”,&amp;Map[i][j]);<br>
 }<br>
-for(ll j=0;j&lt;num_prime&amp;&amp;i<em>prime[j]&lt;N;j++){    // 质数</em>i为合数，记录<br>
-isNotPrime[i * prime[j]] = 1;<br>
-if(!(i%prime[j]))  //防止重复筛选<br>
-break;<br>
+}<br>
+for(int k=1;k&lt;=n;k++){<br>
+for(int i=1;i&lt;=n;i++){<br>
+for(int j=1;j&lt;=n;j++){<br>
+if(Map[i][j]&gt;Map[i][k]+Map[k][j]){<br>
+Map[i][j]=Map[i][k]+Map[k][j];<br>
+}<br>
+}<br>
+}<br>
+}<br>
+}<br>
+2.朴素Dijkstra  O(n^2)</p>
+<p>//单源最短路，优化后，dis[i]表示结点s到结点i的最短距离</p>
+<p>int n,m,s,s1,s2,s3,Map[10002][10002];<br>
+int dis[10002],vis[10002];<br>
+int main(){<br>
+cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;<br>
+for(int i=1;i&lt;=n;i++){<br>
+for(int j=1;j&lt;=n;j++){<br>
+Map[i][j]=inf;<br>
+}<br>
+Map[i][i]=0;<br>
+}<br>
+while(m–){<br>
+scanf(“%d%d%d”,&amp;s1,&amp;s2,&amp;s3);<br>
+if(s3&lt;Map[s1][s2])Map[s1][s2]=s3;<br>
+if(s3&lt;Map[s2][s1])Map[s2][s1]=s3;<br>
+}<br>
+for(int i=1;i&lt;=n;i++){<br>
+dis[i]=Map[s][i];<br>
+}<br>
+memset(vis,0,sizeof(vis));<br>
+vis[s]=1;<br>
+for(int i=1;i&lt;=n;i++){<br>
+int u=inf,p=-1;<br>
+for(int j=1;j&lt;=n;j++){<br>
+if(!vis[j]&amp;&amp;u&gt;dis[j]){<br>
+u=dis[j];<br>
+p=j;<br>
+}<br>
+}<br>
+vis[p]=1;<br>
+for(int j=1;j&lt;=n;j++){<br>
+if(!vis[j]&amp;&amp;dis[j]&gt;dis[p]+Map[p][j]){<br>
+dis[j]=dis[p]+Map[p][j];<br>
+}<br>
 }<br>
 }<br>
 }</p>
@@ -123,9 +167,9 @@ break;<br>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://1033180517.github.io/post/hello-gridea/">
+            <a href="https://1033180517.github.io/post/zui-xiao-sheng-cheng-shu/">
               <h3 class="post-title">
-                Hello Gridea
+                最小生成树
               </h3>
             </a>
           </div>

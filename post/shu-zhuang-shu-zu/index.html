@@ -2,19 +2,19 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>线性筛素数 | Gridea</title>
+<title>树状数组 | Gridea</title>
 <link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594140249267">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://1033180517.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="线性筛素数 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="树状数组 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="const ll N = 10000050;
-ll prime[N] = {0};    //记录质数
-ll num_prime =0;     //表示质数数量
-int isNotPrime[N] = {1, 1};    //记录n是否..." />
+    <meta name="description" content="int data[500003];        //存单点数据
+int sub[500003];        //data的差分数组
+int tree[500003];        //维护sub
+int tree1[500003];..." />
     <meta name="keywords" content="算法" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -77,14 +77,14 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              线性筛素数
+              树状数组
             </h2>
             <div class="post-info">
               <span>
                 2020-07-08
               </span>
               <span>
-                1 min read
+                3 min read
               </span>
               
                 <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="post-tag">
@@ -95,22 +95,124 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>const ll N = 10000050;<br>
-ll prime[N] = {0};    //记录质数<br>
-ll num_prime =0;     //表示质数数量<br>
-int isNotPrime[N] = {1, 1};    //记录n是否为质数</p>
-<p>int main(){<br>
-for(ll i=2;i&lt;N;i++){<br>
-if(!isNotPrime[i]){        // i为质数，则记录<br>
-prime[num_prime++]=i;<br>
+                <p>int data[500003];        //存单点数据<br>
+int sub[500003];        //data的差分数组<br>
+int tree[500003];        //维护sub<br>
+int tree1[500003];<br>
+int tree2[500003];        //维护 sub2<br>
+int sub2[500002];        //表示sub[i]*i的前缀和</p>
+<p>//表示x的二进制表示从右向左第一个1换成十进制为多少</p>
+<p>inline int lowbit(int x){<br>
+return x&amp;(-x);<br>
 }<br>
-for(ll j=0;j&lt;num_prime&amp;&amp;i<em>prime[j]&lt;N;j++){    // 质数</em>i为合数，记录<br>
-isNotPrime[i * prime[j]] = 1;<br>
-if(!(i%prime[j]))  //防止重复筛选<br>
-break;<br>
+单点修改+区间查询</p>
+<p>//建树</p>
+<p>void build(){<br>
+for(int i=1;i&lt;=n;i++){<br>
+for(int j=i;j&lt;=n;j+=lowbit(j)){<br>
+tree[j]+=data[i];<br>
 }<br>
 }<br>
 }</p>
+<p>//单点更新</p>
+<p>void add(int x,int d){<br>
+while(x&lt;=n){<br>
+tree[x]+=d;<br>
+x+=lowbit(x);<br>
+}<br>
+}</p>
+<p>//区间查询</p>
+<p>inline int range_query(int l,int r){<br>
+int ans1=0,ans2=0;<br>
+for(int i=r;i&gt;0;i-=lowbit(i)){<br>
+ans1+=tree[i];<br>
+}<br>
+for(int i=l-1;i&gt;0;i-=lowbit(i)){<br>
+ans2+=tree[i];<br>
+}<br>
+return ans1-ans2;<br>
+}<br>
+区间修改+单点查询</p>
+<p>//用差分数组建树</p>
+<p>void build(){<br>
+for(int i=1;i&lt;=n;i++){<br>
+for(int j=i;j&lt;=n;j+=lowbit(j)){<br>
+tree[j]+=sub[i];<br>
+}<br>
+}<br>
+}</p>
+<p>//区间修改</p>
+<p>void range_add(int l,int r,int d){<br>
+for(int i=l;i&lt;=n;i+=lowbit(i)){<br>
+tree[i]+=d;<br>
+}<br>
+for(int i=r+1;i&lt;=n;i+=lowbit(i)){<br>
+tree[i]-=d;<br>
+}<br>
+}</p>
+<p>//单点查询</p>
+<p>inline int query(int x){<br>
+int ans=0;<br>
+for(int i=x;i&gt;0;i-=lowbit(i)){<br>
+ans+=tree[i];<br>
+}<br>
+return ans;<br>
+}<br>
+区间修改+区间查询</p>
+<p>//建树</p>
+<p>void build(){<br>
+for(int i=1;i&lt;=n;i++){<br>
+for(int j=i;j&lt;=n;j+=lowbit(j)){<br>
+tree1[j]+=sub[i];<br>
+}<br>
+}<br>
+for(int i=1;i&lt;=n;i++){<br>
+for(int j=i;j&lt;=n;j+=lowbit(j)){<br>
+tree2[j]+=sub[i]*i;<br>
+}<br>
+}<br>
+}</p>
+<p>//区间修改</p>
+<p>void range_add(int l,int r,int d){<br>
+for(int i=l;i&lt;=n;i+=lowbit(i)){<br>
+tree1[i]+=d;<br>
+}<br>
+for(int i=r+1;i&lt;=n;i+=lowbit(i)){<br>
+tree1[i]-=d;<br>
+}<br>
+for(int i=l;i&lt;=n;i+=lowbit(i)){<br>
+tree2[i]+=d*l;<br>
+}</p>
+<pre><code>for(int i=r+1;i&lt;=n;i+=lowbit(i)){
+    tree2[i]-=d*r-d;
+}
+</code></pre>
+<p>}</p>
+<p>//区间查询</p>
+<p>int range_query(int l,int r){<br>
+int ans1=0,ans2=0,s=0;</p>
+<pre><code>for(int i=r;i&gt;0;i-=lowbit(i)){
+    s+=tree1[i];
+}
+ans1+=s*(r+1);
+s=0;
+for(int i=r;i&gt;0;i-=lowbit(i)){
+    s+=tree2[i];
+}
+ans1-=s;
+s=0;
+for(int i=l-1;i&gt;0;i-=lowbit(i)){
+    s+=tree1[i];
+}
+ans2+=s*l;
+s=0;
+for(int i=l-1;i&gt;0;i-=lowbit(i)){
+    s+=tree2[i];
+}
+ans2-=s;
+return ans1-ans2;
+</code></pre>
+<p>}</p>
 
               </div>
               <div class="toc-container">
@@ -123,9 +225,9 @@ break;<br>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://1033180517.github.io/post/hello-gridea/">
+            <a href="https://1033180517.github.io/post/kmp/">
               <h3 class="post-title">
-                Hello Gridea
+                KMP
               </h3>
             </a>
           </div>

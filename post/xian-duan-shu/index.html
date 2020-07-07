@@ -2,19 +2,23 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>线性筛素数 | Gridea</title>
+<title>线段树 | Gridea</title>
 <link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594140249267">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://1033180517.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="线性筛素数 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="线段树 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="const ll N = 10000050;
-ll prime[N] = {0};    //记录质数
-ll num_prime =0;     //表示质数数量
-int isNotPrime[N] = {1, 1};    //记录n是否..." />
+    <meta name="description" content="ll n,m;
+ll value[400002];
+ll data[200002];
+ll lazy[400002];
+//首先建树
+void build(int o,int l,int r){
+if(l==r){
+value[o]=dat..." />
     <meta name="keywords" content="算法" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -77,14 +81,14 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              线性筛素数
+              线段树
             </h2>
             <div class="post-info">
               <span>
                 2020-07-08
               </span>
               <span>
-                1 min read
+                3 min read
               </span>
               
                 <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="post-tag">
@@ -95,22 +99,101 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>const ll N = 10000050;<br>
-ll prime[N] = {0};    //记录质数<br>
-ll num_prime =0;     //表示质数数量<br>
-int isNotPrime[N] = {1, 1};    //记录n是否为质数</p>
-<p>int main(){<br>
-for(ll i=2;i&lt;N;i++){<br>
-if(!isNotPrime[i]){        // i为质数，则记录<br>
-prime[num_prime++]=i;<br>
+                <p>ll n,m;<br>
+ll value[400002];<br>
+ll data[200002];<br>
+ll lazy[400002];</p>
+<p>//首先建树<br>
+void build(int o,int l,int r){<br>
+if(l==r){<br>
+value[o]=data[l];<br>
+return ;<br>
 }<br>
-for(ll j=0;j&lt;num_prime&amp;&amp;i<em>prime[j]&lt;N;j++){    // 质数</em>i为合数，记录<br>
-isNotPrime[i * prime[j]] = 1;<br>
-if(!(i%prime[j]))  //防止重复筛选<br>
-break;<br>
+ll m=(l+r)/2;<br>
+build(o<em>2,l,m);<br>
+build(o</em>2+1,m+1,r);<br>
+value[o]=max(value[o<em>2],value[o</em>2+1]);<br>
 }<br>
+单点更新+区间查询</p>
+<p>//单点更新，将x的value改为d<br>
+void update(int o,int l,int r,int x,int d){<br>
+if(l==r){<br>
+value[o]=d;<br>
+return ;<br>
 }<br>
+int m=(l+r)/2;<br>
+if(x&lt;=m)update(o<em>2,l,m,x,d);<br>
+if(m+1&lt;=x)update(o</em>2+1,m+1,r,x,d);<br>
+value[o]=max(value[o<em>2],value[o</em>2+1]);<br>
 }</p>
+<p>//查询区间[ql,qr]的最大值<br>
+int query(int o,int l,int r,int ql,int qr){<br>
+if(ql&lt;=l&amp;&amp;r&lt;=qr)return value[o];<br>
+int m=(l+r)/2;<br>
+int ans=0;<br>
+if(ql&lt;=m){<br>
+ans=max(ans,query(o<em>2,l,m,ql,qr));<br>
+}<br>
+if(qr&gt;=m+1){<br>
+ans=max(ans,query(o</em>2+1,m+1,r,ql,qr));<br>
+}<br>
+return ans;<br>
+}<br>
+区间更新+区间和查询</p>
+<p>//为区间[l,r]增加lazy标记d</p>
+<p>void free(int o,int l,int r,int d){<br>
+lazy[o]+=d;<br>
+value[o]+=d*(r-l+1);<br>
+}</p>
+<p>//将lazy标记向下传递</p>
+<p>void lazy_down(int o,int l,int r){<br>
+if(!lazy[o])return ;<br>
+int m=(l+r)/2;<br>
+free(o<em>2,l,m,lazy[o]);<br>
+free(o</em>2+1,m+1,r,lazy[o]);<br>
+lazy[o]=0;<br>
+}</p>
+<p>//维护lazy的父节点</p>
+<p>void push_up(int o){<br>
+value[o]=value[o<em>2]+value[o</em>2+1];<br>
+}</p>
+<p>//区间更新，[ql,qr]每个数都增加d</p>
+<p>void update(int o,int l,int r,int ql,int qr,int d){<br>
+if(ql&lt;=l&amp;&amp;r&lt;=qr){<br>
+free(o,l,r,d);<br>
+return ;<br>
+}<br>
+lazy_down(o,l,r);<br>
+int m=(l+r)/2;<br>
+if(ql&lt;=m){<br>
+update(o<em>2,l,m,ql,qr,d);<br>
+}<br>
+if(qr&gt;=m+1){<br>
+update(o</em>2+1,m+1,r,ql,qr,d);<br>
+}<br>
+push_up(o);<br>
+}</p>
+<p>//区间查询,[ql,qr]之和</p>
+<p>ll query(int o,int l,int r,int ql,int qr){<br>
+if(ql&lt;=l&amp;&amp;r&lt;=qr){<br>
+return value[o];<br>
+}<br>
+lazy_down(o,l,r);<br>
+ll ans=0;<br>
+int m=(l+r)/2;<br>
+if(ql&lt;=m){<br>
+ans+=query(o<em>2,l,m,ql,qr);<br>
+}<br>
+if(qr&gt;=m+1){<br>
+ans+=query(o</em>2+1,m+1,r,ql,qr);<br>
+}<br>
+return ans;<br>
+}<br>
+例题</p>
+<p>HDU – 1754</p>
+<p>HDU – 1556</p>
+<p>luogu – P3372</p>
+<p>luogu – P3373 (算到自闭)</p>
 
               </div>
               <div class="toc-container">
@@ -123,9 +206,9 @@ break;<br>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://1033180517.github.io/post/hello-gridea/">
+            <a href="https://1033180517.github.io/post/kuai-su-mi/">
               <h3 class="post-title">
-                Hello Gridea
+                快速幂
               </h3>
             </a>
           </div>

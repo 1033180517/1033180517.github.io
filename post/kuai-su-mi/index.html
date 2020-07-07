@@ -2,19 +2,23 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>线性筛素数 | Gridea</title>
+<title>快速幂 | Gridea</title>
 <link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594140249267">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://1033180517.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="线性筛素数 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="快速幂 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="const ll N = 10000050;
-ll prime[N] = {0};    //记录质数
-ll num_prime =0;     //表示质数数量
-int isNotPrime[N] = {1, 1};    //记录n是否..." />
+    <meta name="description" content="ll b,p,k,ans=1;
+ll x,y,z;
+int main(){
+cin&gt;&gt;b&gt;&gt;p&gt;&gt;k;
+x=b;y=p;z=k;
+while(y&gt;1){
+    if(y%2==0){
+      ..." />
     <meta name="keywords" content="算法" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -77,7 +81,7 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              线性筛素数
+              快速幂
             </h2>
             <div class="post-info">
               <span>
@@ -95,22 +99,24 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>const ll N = 10000050;<br>
-ll prime[N] = {0};    //记录质数<br>
-ll num_prime =0;     //表示质数数量<br>
-int isNotPrime[N] = {1, 1};    //记录n是否为质数</p>
+                <p>ll b,p,k,ans=1;<br>
+ll x,y,z;</p>
 <p>int main(){<br>
-for(ll i=2;i&lt;N;i++){<br>
-if(!isNotPrime[i]){        // i为质数，则记录<br>
-prime[num_prime++]=i;<br>
-}<br>
-for(ll j=0;j&lt;num_prime&amp;&amp;i<em>prime[j]&lt;N;j++){    // 质数</em>i为合数，记录<br>
-isNotPrime[i * prime[j]] = 1;<br>
-if(!(i%prime[j]))  //防止重复筛选<br>
-break;<br>
-}<br>
-}<br>
-}</p>
+cin&gt;&gt;b&gt;&gt;p&gt;&gt;k;<br>
+x=b;y=p;z=k;</p>
+<pre><code>while(y&gt;1){
+    if(y%2==0){
+        x*=x; y/=2; x%=z;
+    }
+    else{
+        ans*=x; ans%=z;
+        x*=x; y/=2; x%=z;
+    }
+}
+ans*=x; ans%=z;
+cout&lt;&lt;ans&lt;&lt;endl;
+</code></pre>
+<p>}</p>
 
               </div>
               <div class="toc-container">
@@ -123,9 +129,9 @@ break;<br>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://1033180517.github.io/post/hello-gridea/">
+            <a href="https://1033180517.github.io/post/xian-xing-shai-su-shu/">
               <h3 class="post-title">
-                Hello Gridea
+                线性筛素数
               </h3>
             </a>
           </div>

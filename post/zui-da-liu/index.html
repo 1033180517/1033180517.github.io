@@ -2,19 +2,24 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>线性筛素数 | Gridea</title>
+<title>最大流 | Gridea</title>
 <link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594140249267">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://1033180517.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="线性筛素数 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="最大流 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="const ll N = 10000050;
-ll prime[N] = {0};    //记录质数
-ll num_prime =0;     //表示质数数量
-int isNotPrime[N] = {1, 1};    //记录n是否..." />
+    <meta name="description" content="Ford-Fulkerson （dfs写法）
+int n,m,s,t;
+int x,y,z;
+int vis[10002];
+struct edge{
+int to,wei,re;
+};
+vectorMap[10002];
+void add..." />
     <meta name="keywords" content="算法" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -77,14 +82,14 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              线性筛素数
+              最大流
             </h2>
             <div class="post-info">
               <span>
                 2020-07-08
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
                 <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="post-tag">
@@ -95,21 +100,51 @@ int isNotPrime[N] = {1, 1};    //记录n是否..." />
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>const ll N = 10000050;<br>
-ll prime[N] = {0};    //记录质数<br>
-ll num_prime =0;     //表示质数数量<br>
-int isNotPrime[N] = {1, 1};    //记录n是否为质数</p>
+                <p>Ford-Fulkerson （dfs写法）</p>
+<p>int n,m,s,t;<br>
+int x,y,z;<br>
+int vis[10002];</p>
+<p>struct edge{<br>
+int to,wei,re;<br>
+};<br>
+vector<edge>Map[10002];</p>
+<p>void add_edge(int a,int b,int w){<br>
+Map[a].push_back({b,w,Map[b].size()});<br>
+Map[b].push_back({a,0,Map[a].size()-1});<br>
+}</p>
+<p>int dfs(int x,int num){<br>
+if(x==t)return num;<br>
+vis[x]=1;<br>
+for(int i=0;i&lt;Map[x].size();i++){<br>
+edge &amp;e=Map[x][i];<br>
+if(!vis[e.to]&amp;&amp;e.wei&gt;0){<br>
+int t=dfs(e.to,min(num,e.wei));<br>
+if(t&gt;0){<br>
+e.wei-=t;<br>
+Map[e.to][e.re].wei+=t;<br>
+return t;<br>
+}<br>
+}<br>
+}<br>
+return 0;<br>
+}</p>
+<p>int max_flow(int x){<br>
+int flow=0;<br>
+for(;😉{<br>
+memset(vis,0,sizeof(vis));<br>
+int f=dfs(x,inf);<br>
+flow+=f;<br>
+if(f==0)return flow;<br>
+}<br>
+}</p>
 <p>int main(){<br>
-for(ll i=2;i&lt;N;i++){<br>
-if(!isNotPrime[i]){        // i为质数，则记录<br>
-prime[num_prime++]=i;<br>
+ios::sync_with_stdio(0);<br>
+cin&gt;&gt;n&gt;&gt;m&gt;&gt;s&gt;&gt;t;<br>
+for(int i=0;i&lt;m;i++){<br>
+cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;<br>
+add_edge(x,y,z);<br>
 }<br>
-for(ll j=0;j&lt;num_prime&amp;&amp;i<em>prime[j]&lt;N;j++){    // 质数</em>i为合数，记录<br>
-isNotPrime[i * prime[j]] = 1;<br>
-if(!(i%prime[j]))  //防止重复筛选<br>
-break;<br>
-}<br>
-}<br>
+cout&lt;&lt;max_flow(s)&lt;&lt;endl;<br>
 }</p>
 
               </div>
@@ -123,9 +158,9 @@ break;<br>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://1033180517.github.io/post/hello-gridea/">
+            <a href="https://1033180517.github.io/post/zui-duan-lu-jing/">
               <h3 class="post-title">
-                Hello Gridea
+                最短路径
               </h3>
             </a>
           </div>
