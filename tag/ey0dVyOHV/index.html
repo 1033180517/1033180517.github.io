@@ -1,101 +1,102 @@
+<!DOCTYPE html>
 <html>
   <head>
-  <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>笔记 | Gridea</title>
-<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594188472767">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+    <meta charset="utf-8" >
+
+<title>笔记 | Xiaoze&#39;s blog</title>
+<meta name="description" content="my blog">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594188812250">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://1033180517.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="笔记 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
-  <meta name="description" content="my blog" />
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://1033180517.github.io">
-  <img class="avatar" src="https://1033180517.github.io/images/avatar.png?v=1594188472767" alt="">
-  </a>
-  <h1 class="site-title">
-    Gridea
-  </h1>
-  <p class="site-description">
-    my blog
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://1033180517.github.io">Xiaoze&#39;s blog</a></h3>
   </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
   </div>
-</div>
+</nav>
 
-        <div class="current-tag-container">
-            <h2 class="title">
-                标签：# 笔记
-            </h2> 
-        </div>
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://1033180517.github.io/post/acm-bi-ji-chi-xu-geng-xin/">
-        <h2 class="post-title">acm笔记（持续更新）</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-07-08
-        </span>
-        <span>
-          1 min read
-        </span>
-        
-          <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="post-tag">
-            # 笔记
-          </a>
-        
-      </div>
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <h2 class="current-tag">标签: 笔记</h2>
+          
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://1033180517.github.io/post/acm-bi-ji-chi-xu-geng-xin/">acm笔记（持续更新）</a>
+    </h2>
+    <p class="article-meta">
+      2020-07-08
       
-      <div class="post-abstract">
-        <p>Set</p>
-<p>begin(), end(), clear(), empty(), insert(), erase(it), size()</p>
+        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge ">
+          笔记
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      <p>Set</p>
+<p>函数<br>
+begin(), end(), clear(), empty(), insert(), erase(it), size()</p>
 <p>迭代器<br>
 set<int>::iterator it;</p>
 <p>自定义比较器<br>
@@ -107,24 +108,141 @@ return 0;<br>
 };<br>
 set &lt;int, cmp&gt; s;</p>
 
-      </div>
-    </article>
-  
-</div>
-
-        <div class="pagination-container">
-  
-  
-</div>
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://1033180517.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
-      </div>
+    </p>
+    <div class="row">
+      <a href="https://1033180517.github.io/post/acm-bi-ji-chi-xu-geng-xin/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
     </div>
+  </article>
+
+
+        </div>
+        <div class="row flex-edges">
+  
+  
+</div>
+
+      </div>
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://1033180517.github.io/images/avatar.png?v=1594188812250" class="no-responsive avatar">
+    <div class="text-muted">my blog</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://1033180517.github.io/post/acm-bi-ji-chi-xu-geng-xin/">acm笔记（持续更新）</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://1033180517.github.io/post/zui-da-liu/">最大流</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://1033180517.github.io/post/zui-duan-lu-jing/">最短路径</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://1033180517.github.io/post/zui-xiao-sheng-cheng-shu/">最小生成树</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://1033180517.github.io/post/shu-zhuang-shu-zu/">树状数组</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://1033180517.github.io/post/kmp/">KMP</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://1033180517.github.io/post/xian-duan-shu/">线段树</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://1033180517.github.io/post/kuai-su-mi/">快速幂</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://1033180517.github.io/post/xian-xing-shai-su-shu/">线性筛素数</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge secondary">
+          笔记
+        </a>
+      
+        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge success">
+          算法
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://1033180517.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
   </body>
 </html>
