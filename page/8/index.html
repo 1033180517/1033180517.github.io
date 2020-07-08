@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>最大流 | Xiaoze&#39;s blog</title>
+<title>Xiaoze&#39;s blog</title>
 <meta name="description" content="my blog">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,7 +23,6 @@
 
   </head>
   <body>
-  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://1033180517.github.io">Xiaoze&#39;s blog</a></h3>
@@ -77,88 +76,53 @@
   </div>
 </nav>
 
+
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          <article class="article">
-            <h1>最大流</h1>
-            <p class="article-meta">
-              2020-07-08
-              
-                <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge secondary">
-                  算法
-                </a>
-              
-            </p>
-            
-            <div class="post-content">
-              <p>Ford-Fulkerson （dfs写法）</p>
-<p>int n,m,s,t;<br>
-int x,y,z;<br>
-int vis[10002];</p>
-<p>struct edge{<br>
-int to,wei,re;<br>
-};<br>
-vector<edge>Map[10002];</p>
-<p>void add_edge(int a,int b,int w){<br>
-Map[a].push_back({b,w,Map[b].size()});<br>
-Map[b].push_back({a,0,Map[a].size()-1});<br>
-}</p>
-<p>int dfs(int x,int num){<br>
-if(x==t)return num;<br>
-vis[x]=1;<br>
-for(int i=0;i&lt;Map[x].size();i++){<br>
-edge &amp;e=Map[x][i];<br>
-if(!vis[e.to]&amp;&amp;e.wei&gt;0){<br>
-int t=dfs(e.to,min(num,e.wei));<br>
-if(t&gt;0){<br>
-e.wei-=t;<br>
-Map[e.to][e.re].wei+=t;<br>
-return t;<br>
-}<br>
-}<br>
-}<br>
-return 0;<br>
-}</p>
-<p>int max_flow(int x){<br>
-int flow=0;<br>
-for(;😉{<br>
-memset(vis,0,sizeof(vis));<br>
-int f=dfs(x,inf);<br>
-flow+=f;<br>
-if(f==0)return flow;<br>
-}<br>
-}</p>
-<p>int main(){<br>
-ios::sync_with_stdio(0);<br>
-cin&gt;&gt;n&gt;&gt;m&gt;&gt;s&gt;&gt;t;<br>
-for(int i=0;i&lt;m;i++){<br>
-cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;<br>
-add_edge(x,y,z);<br>
-}<br>
-cout&lt;&lt;max_flow(s)&lt;&lt;endl;<br>
-}</p>
+          
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://1033180517.github.io/post/kuai-su-mi/">快速幂</a>
+    </h2>
+    <p class="article-meta">
+      2020-07-08
+      
+        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge ">
+          算法
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://1033180517.github.io/post/kuai-su-mi/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
 
-            </div>
-          </article>
-        </div>
-        <div class="paper" data-aos="fade-in">
-          
-            <div class="next-post">
-              <div class="next">
-                下一篇
-              </div>
-              <a href="https://1033180517.github.io/post/zui-duan-lu-jing/">
-                <h3 class="post-title">
-                  最短路径
-                </h3>
-              </a>
-            </div>
-          
+
         </div>
         
-      </div>
+        <div class="row flex-edges">
+  
+    <a href="https://1033180517.github.io/page/7/" class="paper-btn">
+      上一页
+    </a>
+  
+  
+    <a href="https://1033180517.github.io/page/9/" class="paper-btn">
+      下一页
+    </a>
+  
+</div>
 
+      </div>
+      
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://1033180517.github.io/images/avatar.png?v=1594191200017" class="no-responsive avatar">
@@ -247,11 +211,11 @@ cout&lt;&lt;max_flow(s)&lt;&lt;endl;<br>
     </div>
     <div class="row">
       
-        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge warning">
+        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge secondary">
           笔记
         </a>
       
-        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge warning">
+        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge secondary">
           算法
         </a>
       
@@ -262,9 +226,7 @@ cout&lt;&lt;max_flow(s)&lt;&lt;endl;<br>
   </div>
 </div>
 
-
     </div>
-
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 <script type="application/javascript">

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://1033180517.github.io</id>
     <title>Xiaoze&apos;s blog</title>
-    <updated>2020-07-08T06:14:37.154Z</updated>
+    <updated>2020-07-08T06:53:31.040Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://1033180517.github.io"/>
     <link rel="self" href="https://1033180517.github.io/atom.xml"/>
@@ -16,34 +16,37 @@
         <link href="https://1033180517.github.io/post/acm-bi-ji-chi-xu-geng-xin/">
         </link>
         <updated>2020-07-08T00:09:58.000Z</updated>
-        <summary type="html"><![CDATA[<p>Set</p>
+        <summary type="html"><![CDATA[<h1 id="set">Set</h1>
 <p>函数<br>
-begin(), end(), clear(), empty(), insert(), erase(it), size()</p>
+<code>begin(), end(), clear(), empty(), insert(), erase(it), size()</code></p>
 <p>迭代器<br>
-set<int>::iterator it;</p>
+<code>set&lt;int&gt;::iterator it;</code></p>
 <p>自定义比较器<br>
 struct cmp{<br>
 bool operator()(const int &amp;a, const int &amp;b) const{<br>
-if(a&gt;b)return 1;<br>
+if(a&gt;b)<br>
+return 1;<br>
 return 0;<br>
 }<br>
 };<br>
 set &lt;int, cmp&gt; s;</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>Set</p>
+        <content type="html"><![CDATA[<h1 id="set">Set</h1>
 <p>函数<br>
-begin(), end(), clear(), empty(), insert(), erase(it), size()</p>
+<code>begin(), end(), clear(), empty(), insert(), erase(it), size()</code></p>
 <p>迭代器<br>
-set<int>::iterator it;</p>
+<code>set&lt;int&gt;::iterator it;</code></p>
 <p>自定义比较器<br>
 struct cmp{<br>
 bool operator()(const int &amp;a, const int &amp;b) const{<br>
-if(a&gt;b)return 1;<br>
+if(a&gt;b)<br>
+return 1;<br>
 return 0;<br>
 }<br>
 };<br>
 set &lt;int, cmp&gt; s;</p>
 <!-- more -->
+<p>Vector</p>
 ]]></content>
     </entry>
     <entry>
