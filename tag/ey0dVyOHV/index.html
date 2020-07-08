@@ -3,7 +3,7 @@
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>笔记 | Gridea</title>
-<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594167351607">
+<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594188437297">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://1033180517.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="笔记 | Gridea - Atom Feed" href="https://1033180517.github.io/atom.xml">
@@ -18,7 +18,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://1033180517.github.io">
-  <img class="avatar" src="https://1033180517.github.io/images/avatar.png?v=1594167351607" alt="">
+  <img class="avatar" src="https://1033180517.github.io/images/avatar.png?v=1594188437297" alt="">
   </a>
   <h1 class="site-title">
     Gridea
@@ -94,7 +94,19 @@
       </div>
       
       <div class="post-abstract">
-        
+        <p>Set</p>
+<p>begin(), end(), clear(), empty(), insert(), erase(it), size()</p>
+<p>迭代器<br>
+set<int>::iterator it;</p>
+<p>自定义比较器<br>
+struct cmp{<br>
+bool operator()(const int &amp;a, const int &amp;b) const{<br>
+if(a&gt;b)return 1;<br>
+return 0;<br>
+}<br>
+};<br>
+set &lt;int, cmp&gt; s;</p>
+
       </div>
     </article>
   
