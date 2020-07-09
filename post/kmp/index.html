@@ -7,7 +7,7 @@
 <meta name="description" content="my blog">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594303145735">
+<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594303771159">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -85,43 +85,49 @@
             <p class="article-meta">
               2020-07-08
               
-                <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge success">
+                <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge ">
                   算法
                 </a>
               
             </p>
             
             <div class="post-content">
-              <p>//文本串和模式串<br>
-string str,pat;</p>
-<p>//next[i]表示模式串前i个字符组成的串其前缀后缀相通的最长长度<br>
-//也是在i出匹配失败时该跳转的位置<br>
-int next[10002];</p>
-<p>//得到next数组<br>
-void getnext(){<br>
-int i=0,j=-1;<br>
-next[0]=-1;<br>
-while(i&lt;pat.size()){<br>
-if(j==-1||pat[i]==pat[j]){<br>
-next[++i]=++j;<br>
-}<br>
-else j=next[j];<br>
-}<br>
-}</p>
-<p>//返回文本串中模式串出现的次数<br>
-int kmp(){<br>
-int i=0,j=0,len1=str.size(),len2=pat.size();<br>
-int ans=0;<br>
-while(i&lt;len1){<br>
-if(j==-1||str[i]<mark>pat[j]){<br>
-i++;<br>
-j++;<br>
-}<br>
-else j=next[j];<br>
-if(j</mark>len2)ans++;<br>
-}<br>
-return ans;<br>
-}</p>
+              <pre><code>//文本串和模式串
+string str,pat;
+
+//next[i]表示模式串前i个字符组成的串其前缀后缀相通的最长长度
+//也是在i出匹配失败时该跳转的位置
+int next[10002];
+
+
+//得到next数组
+void getnext(){
+    int i=0,j=-1;
+    next[0]=-1;
+    while(i&lt;pat.size()){
+        if(j==-1||pat[i]==pat[j]){
+            next[++i]=++j;
+        }
+        else j=next[j];
+    }
+}
+
+
+//返回文本串中模式串出现的次数
+int kmp(){
+    int i=0,j=0,len1=str.size(),len2=pat.size();
+    int ans=0;
+    while(i&lt;len1){
+        if(j==-1||str[i]==pat[j]){
+            i++;
+            j++;
+        }
+        else j=next[j];
+        if(j==len2)ans++;
+    }
+    return ans;
+}
+</code></pre>
 
             </div>
           </article>
@@ -145,7 +151,7 @@ return ans;<br>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://1033180517.github.io/images/avatar.png?v=1594303145735" class="no-responsive avatar">
+    <img src="https://1033180517.github.io/images/avatar.png?v=1594303771159" class="no-responsive avatar">
     <div class="text-muted">my blog</div>
     <div class="social-container">
       
@@ -231,11 +237,11 @@ return ans;<br>
     </div>
     <div class="row">
       
-        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge secondary">
+        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge ">
           笔记
         </a>
       
-        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge warning">
+        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge secondary">
           算法
         </a>
       

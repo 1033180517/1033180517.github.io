@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://1033180517.github.io</id>
     <title>Xiaoze&apos;s blog</title>
-    <updated>2020-07-09T13:59:08.143Z</updated>
+    <updated>2020-07-09T14:09:34.233Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://1033180517.github.io"/>
     <link rel="self" href="https://1033180517.github.io/atom.xml"/>
@@ -18,40 +18,43 @@
         <updated>2020-07-08T00:09:58.000Z</updated>
         <summary type="html"><![CDATA[<h1 id="set">Set</h1>
 <p>函数<br>
-<code>begin(), end(), clear(), empty(), insert(), erase(it), size()</code></p>
+begin(), end(), clear(), empty(), insert(), erase(it), size()</p>
 <p>迭代器<br>
-<code>set&lt;int&gt;::iterator it;</code></p>
-<p>自定义比较器<br>
-struct cmp{<br>
-bool operator()(const int &amp;a, const int &amp;b) const{<br>
-if(a&gt;b)<br>
-return 1;<br>
-return 0;<br>
-}<br>
-};<br>
-set &lt;int, cmp&gt; s;</p>
+set<int>::iterator it;</p>
+<p>自定义比较器</p>
+<pre><code>struct cmp{
+    bool operator()(const int &amp;a, const int &amp;b) const{
+        if(a&gt;b)
+            return 1;
+        return 0;
+    }
+};
+set &lt;int, cmp&gt; s;
+</code></pre>
 ]]></summary>
         <content type="html"><![CDATA[<h1 id="set">Set</h1>
 <p>函数<br>
-<code>begin(), end(), clear(), empty(), insert(), erase(it), size()</code></p>
+begin(), end(), clear(), empty(), insert(), erase(it), size()</p>
 <p>迭代器<br>
-<code>set&lt;int&gt;::iterator it;</code></p>
-<p>自定义比较器<br>
-struct cmp{<br>
-bool operator()(const int &amp;a, const int &amp;b) const{<br>
-if(a&gt;b)<br>
-return 1;<br>
-return 0;<br>
-}<br>
-};<br>
-set &lt;int, cmp&gt; s;</p>
+set<int>::iterator it;</p>
+<p>自定义比较器</p>
+<pre><code>struct cmp{
+    bool operator()(const int &amp;a, const int &amp;b) const{
+        if(a&gt;b)
+            return 1;
+        return 0;
+    }
+};
+set &lt;int, cmp&gt; s;
+</code></pre>
 <!-- more -->
 <h1 id="vector">Vector</h1>
-<p>vector<int>v;<br>
-v.resize(n);<br>
-for(auto t:v){<br>
-//<br>
-}</p>
+<pre><code>vector&lt;int&gt;v;
+v.resize(n);
+for(auto t:v){
+    //
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
@@ -60,52 +63,58 @@ for(auto t:v){<br>
         <link href="https://1033180517.github.io/post/zui-da-liu/">
         </link>
         <updated>2020-07-07T16:43:49.000Z</updated>
-        <content type="html"><![CDATA[<p>Ford-Fulkerson （dfs写法）</p>
-<p>int n,m,s,t;<br>
-int x,y,z;<br>
-int vis[10002];</p>
-<p>struct edge{<br>
-int to,wei,re;<br>
-};<br>
-vector<edge>Map[10002];</p>
-<p>void add_edge(int a,int b,int w){<br>
-Map[a].push_back({b,w,Map[b].size()});<br>
-Map[b].push_back({a,0,Map[a].size()-1});<br>
-}</p>
-<p>int dfs(int x,int num){<br>
-if(x==t)return num;<br>
-vis[x]=1;<br>
-for(int i=0;i&lt;Map[x].size();i++){<br>
-edge &amp;e=Map[x][i];<br>
-if(!vis[e.to]&amp;&amp;e.wei&gt;0){<br>
-int t=dfs(e.to,min(num,e.wei));<br>
-if(t&gt;0){<br>
-e.wei-=t;<br>
-Map[e.to][e.re].wei+=t;<br>
-return t;<br>
-}<br>
-}<br>
-}<br>
-return 0;<br>
-}</p>
-<p>int max_flow(int x){<br>
-int flow=0;<br>
-for(;😉{<br>
-memset(vis,0,sizeof(vis));<br>
-int f=dfs(x,inf);<br>
-flow+=f;<br>
-if(f==0)return flow;<br>
-}<br>
-}</p>
-<p>int main(){<br>
-ios::sync_with_stdio(0);<br>
-cin&gt;&gt;n&gt;&gt;m&gt;&gt;s&gt;&gt;t;<br>
-for(int i=0;i&lt;m;i++){<br>
-cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;<br>
-add_edge(x,y,z);<br>
-}<br>
-cout&lt;&lt;max_flow(s)&lt;&lt;endl;<br>
-}</p>
+        <content type="html"><![CDATA[<h3 id="ford-fulkerson-dfs写法">Ford-Fulkerson （dfs写法）</h3>
+<pre><code>int n,m,s,t;
+int x,y,z;
+int vis[10002];
+
+struct edge{
+    int to,wei,re;
+};
+vector&lt;edge&gt;Map[10002];
+
+void add_edge(int a,int b,int w){
+    Map[a].push_back({b,w,Map[b].size()});
+    Map[b].push_back({a,0,Map[a].size()-1});
+}
+
+int dfs(int x,int num){
+    if(x==t)return num;
+    vis[x]=1;
+    for(int i=0;i&lt;Map[x].size();i++){
+        edge &amp;e=Map[x][i];
+        if(!vis[e.to]&amp;&amp;e.wei&gt;0){
+            int t=dfs(e.to,min(num,e.wei));
+            if(t&gt;0){
+                e.wei-=t;
+                Map[e.to][e.re].wei+=t;
+                return t;
+            }
+        }
+    }
+    return 0;
+}
+
+int max_flow(int x){
+    int flow=0;
+    for(;;){
+        memset(vis,0,sizeof(vis));
+        int f=dfs(x,inf);
+        flow+=f;
+        if(f==0)return flow;
+    }    
+}
+
+int main(){
+    ios::sync_with_stdio(0);
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s&gt;&gt;t;
+    for(int i=0;i&lt;m;i++){
+        cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;
+        add_edge(x,y,z);
+    }
+    cout&lt;&lt;max_flow(s)&lt;&lt;endl;
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
@@ -114,64 +123,68 @@ cout&lt;&lt;max_flow(s)&lt;&lt;endl;<br>
         <link href="https://1033180517.github.io/post/zui-duan-lu-jing/">
         </link>
         <updated>2020-07-07T16:43:20.000Z</updated>
-        <content type="html"><![CDATA[<p>1.Floyd O(n^3)</p>
-<p>//暴力松弛，优化后，Map[i][j]表示结点i到结点j的最短距离</p>
-<p>int n，Map[1005][1005];<br>
-int main(){<br>
-cin&gt;&gt;n;<br>
-for(int i=1;i&lt;=n;i++){<br>
-for(int j=1;j&lt;=n;j++){<br>
-scanf(“%d”,&amp;Map[i][j]);<br>
-}<br>
-}<br>
-for(int k=1;k&lt;=n;k++){<br>
-for(int i=1;i&lt;=n;i++){<br>
-for(int j=1;j&lt;=n;j++){<br>
-if(Map[i][j]&gt;Map[i][k]+Map[k][j]){<br>
-Map[i][j]=Map[i][k]+Map[k][j];<br>
-}<br>
-}<br>
-}<br>
-}<br>
-}<br>
-2.朴素Dijkstra  O(n^2)</p>
-<p>//单源最短路，优化后，dis[i]表示结点s到结点i的最短距离</p>
-<p>int n,m,s,s1,s2,s3,Map[10002][10002];<br>
-int dis[10002],vis[10002];<br>
-int main(){<br>
-cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;<br>
-for(int i=1;i&lt;=n;i++){<br>
-for(int j=1;j&lt;=n;j++){<br>
-Map[i][j]=inf;<br>
-}<br>
-Map[i][i]=0;<br>
-}<br>
-while(m–){<br>
-scanf(“%d%d%d”,&amp;s1,&amp;s2,&amp;s3);<br>
-if(s3&lt;Map[s1][s2])Map[s1][s2]=s3;<br>
-if(s3&lt;Map[s2][s1])Map[s2][s1]=s3;<br>
-}<br>
-for(int i=1;i&lt;=n;i++){<br>
-dis[i]=Map[s][i];<br>
-}<br>
-memset(vis,0,sizeof(vis));<br>
-vis[s]=1;<br>
-for(int i=1;i&lt;=n;i++){<br>
-int u=inf,p=-1;<br>
-for(int j=1;j&lt;=n;j++){<br>
-if(!vis[j]&amp;&amp;u&gt;dis[j]){<br>
-u=dis[j];<br>
-p=j;<br>
-}<br>
-}<br>
-vis[p]=1;<br>
-for(int j=1;j&lt;=n;j++){<br>
-if(!vis[j]&amp;&amp;dis[j]&gt;dis[p]+Map[p][j]){<br>
-dis[j]=dis[p]+Map[p][j];<br>
-}<br>
-}<br>
-}<br>
-}</p>
+        <content type="html"><![CDATA[<h3 id="1floyd-on3">1.Floyd O(n^3)</h3>
+<pre><code>//暴力松弛，优化后，Map[i][j]表示结点i到结点j的最短距离
+
+int n，Map[1005][1005];
+int main(){
+    cin&gt;&gt;n;
+    for(int i=1;i&lt;=n;i++){
+        for(int j=1;j&lt;=n;j++){
+            scanf(“%d”,&amp;Map[i][j]);
+        }
+    }
+    for(int k=1;k&lt;=n;k++){
+        for(int i=1;i&lt;=n;i++){
+            for(int j=1;j&lt;=n;j++){
+                if(Map[i][j]&gt;Map[i][k]+Map[k][j]){
+                    Map[i][j]=Map[i][k]+Map[k][j];
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="2朴素dijkstra-on2">2.朴素Dijkstra  O(n^2)</h3>
+<pre><code>//单源最短路，优化后，dis[i]表示结点s到结点i的最短距离
+
+int n,m,s,s1,s2,s3,Map[10002][10002];
+int dis[10002],vis[10002];
+int main(){
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;
+    for(int i=1;i&lt;=n;i++){
+        for(int j=1;j&lt;=n;j++){
+            Map[i][j]=inf;
+        }
+        Map[i][i]=0;
+    }
+    while(m–){
+        scanf(“%d%d%d”,&amp;s1,&amp;s2,&amp;s3);
+        if(s3&lt;Map[s1][s2])Map[s1][s2]=s3;
+        if(s3&lt;Map[s2][s1])Map[s2][s1]=s3;
+    }
+    for(int i=1;i&lt;=n;i++){
+        dis[i]=Map[s][i];
+    }
+    memset(vis,0,sizeof(vis));
+    vis[s]=1;
+    for(int i=1;i&lt;=n;i++){
+        int u=inf,p=-1;
+        for(int j=1;j&lt;=n;j++){
+            if(!vis[j]&amp;&amp;u&gt;dis[j]){
+                u=dis[j];
+                p=j;
+            }
+        }
+        vis[p]=1;
+        for(int j=1;j&lt;=n;j++){
+            if(!vis[j]&amp;&amp;dis[j]&gt;dis[p]+Map[p][j]){
+                dis[j]=dis[p]+Map[p][j];
+            }
+        }
+    }
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
@@ -180,84 +193,90 @@ dis[j]=dis[p]+Map[p][j];<br>
         <link href="https://1033180517.github.io/post/zui-xiao-sheng-cheng-shu/">
         </link>
         <updated>2020-07-07T16:43:03.000Z</updated>
-        <content type="html"><![CDATA[<p>1.Kruskal   O(ElogE)</p>
-<p>//E为边数</p>
-<p>//并查集，将边从小到大排序，另取一无边同结点图，遍历边，如果边的两个结点为不同连通分量，则连接边</p>
-<p>int n,s,ans=0,num=0,fa[10002],m=0;<br>
-struct edge{<br>
-int x,y,w;<br>
-}dd[100002];</p>
-<p>int find(int xx){<br>
-if(fa[xx]<mark>xx)return xx;<br>
-return fa[xx]=find(fa[xx]);<br>
-}<br>
-bool cmp(edge a,edge b){<br>
-if(a.w&lt;b.w)return 1;<br>
-return 0;<br>
-}<br>
-int main(){<br>
-cin&gt;&gt;n;<br>
-for(int i=1;i&lt;=n;i++){<br>
-fa[i]=i;<br>
-for(int j=1;j&lt;=n;j++){<br>
-scanf(“%d”,&amp;s);<br>
-if(i&lt;j){<br>
-num++;<br>
-dd[num].x=i;<br>
-dd[num].y=j;<br>
-dd[num].w=s;<br>
-}<br>
-}<br>
-}<br>
-sort(dd+1,dd+num+1,cmp);<br>
-for(int i=1;i&lt;=num;i++){<br>
-if(find(dd[i].x)!=find(dd[i].y)){<br>
-ans+=dd[i].w;<br>
-fa[find(dd[i].x)]=dd[i].y;<br>
-m++;<br>
-if(m</mark>n-1)break;<br>
-}<br>
-}<br>
-cout&lt;&lt;ans&lt;&lt;endl;<br>
-}<br>
-2.Prim   O(n^2)</p>
-<p>//所有结点为白色，将结点1染蓝，将连接蓝-白结点的最短边入树并将白结点染蓝，重复n-1次</p>
-<p>int n,s,vis[10002],num=0,b,w,ans=0;<br>
-struct node{<br>
-int x,y,w;<br>
-bool operator&lt;(node a)const{<br>
-return w&gt;a.w;<br>
-}<br>
-};<br>
-vector<node>q[10002];<br>
-priority_queue<node>p;<br>
-int main(){<br>
-cin&gt;&gt;n;<br>
-memset(vis,0,sizeof(vis));<br>
-for(int i=1;i&lt;=n;i++){<br>
-for(int j=1;j&lt;=n;j++){<br>
-scanf(“%d”,&amp;s);<br>
-if(i==j)continue;<br>
-q[i].push_back({i,j,s});<br>
-q[j].push_back({j,i,s});<br>
-}<br>
-}<br>
-vis[1]=1;<br>
-for(int i=0;i&lt;q[1].size();i++){<br>
-p.push(q[1][i]);<br>
-}<br>
-while(num&lt;n-1){<br>
-b=p.top().y; w=p.top().w; p.pop();<br>
-if(vis[b])continue;<br>
-vis[b]=1;<br>
-ans+=w;<br>
-num++;<br>
-for(int i=0;i&lt;q[b].size();i++){<br>
-p.push(q[b][i]);<br>
-}<br>
-}<br>
-cout&lt;&lt;ans&lt;&lt;endl;<br>
-}</p>
+        <content type="html"><![CDATA[<h3 id="1kruskal-oeloge">1.Kruskal   O(ElogE)</h3>
+<pre><code>//E为边数
+
+//并查集，将边从小到大排序，另取一无边同结点图，遍历边，如果边的两个结点为不同连通分量，则连接边
+
+int n,s,ans=0,num=0,fa[10002],m=0;
+struct edge{
+    int x,y,w;
+}dd[100002];
+
+int find(int xx){
+    if(fa[xx]==xx)return xx;
+    return fa[xx]=find(fa[xx]);
+}
+bool cmp(edge a,edge b){
+    if(a.w&lt;b.w)return 1;
+    return 0;
+}
+int main(){
+    cin&gt;&gt;n;
+    for(int i=1;i&lt;=n;i++){
+        fa[i]=i;
+        for(int j=1;j&lt;=n;j++){
+            scanf(“%d”,&amp;s);
+            if(i&lt;j){
+                num++;
+                dd[num].x=i;
+                dd[num].y=j;
+                dd[num].w=s;
+            }
+        }
+    }
+    sort(dd+1,dd+num+1,cmp);
+    for(int i=1;i&lt;=num;i++){
+        if(find(dd[i].x)!=find(dd[i].y)){
+            ans+=dd[i].w;
+            fa[find(dd[i].x)]=dd[i].y;
+            m++;
+            if(m==n-1)break;
+        }
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+}
+</code></pre>
+<h3 id="2prim-on2">2.Prim   O(n^2)</h3>
+<pre><code>//所有结点为白色，将结点1染蓝，将连接蓝-白结点的最短边入树并将白结点染蓝，重复n-1次
+
+int n,s,vis[10002],num=0,b,w,ans=0;
+struct node{
+    int x,y,w;
+    bool operator&lt;(node a)const{
+        return w&gt;a.w;
+    }
+};
+vector&lt;node&gt;q[10002];
+priority_queue&lt;node&gt;p;
+int main(){
+    cin&gt;&gt;n;
+    memset(vis,0,sizeof(vis));
+    for(int i=1;i&lt;=n;i++){
+        for(int j=1;j&lt;=n;j++){
+            scanf(“%d”,&amp;s);
+            if(i==j)continue;
+            q[i].push_back({i,j,s});
+            q[j].push_back({j,i,s});
+        }
+    }
+    vis[1]=1;
+    for(int i=0;i&lt;q[1].size();i++){
+        p.push(q[1][i]);
+    }
+    while(num&lt;n-1){
+        b=p.top().y; w=p.top().w; p.pop();
+        if(vis[b])continue;
+        vis[b]=1;
+        ans+=w;
+        num++;
+        for(int i=0;i&lt;q[b].size();i++){
+            p.push(q[b][i]);
+        }
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
@@ -266,124 +285,145 @@ cout&lt;&lt;ans&lt;&lt;endl;<br>
         <link href="https://1033180517.github.io/post/shu-zhuang-shu-zu/">
         </link>
         <updated>2020-07-07T16:42:26.000Z</updated>
-        <content type="html"><![CDATA[<p>int data[500003];        //存单点数据<br>
-int sub[500003];        //data的差分数组<br>
-int tree[500003];        //维护sub<br>
-int tree1[500003];<br>
-int tree2[500003];        //维护 sub2<br>
-int sub2[500002];        //表示sub[i]*i的前缀和</p>
-<p>//表示x的二进制表示从右向左第一个1换成十进制为多少</p>
-<p>inline int lowbit(int x){<br>
-return x&amp;(-x);<br>
-}<br>
-单点修改+区间查询</p>
-<p>//建树</p>
-<p>void build(){<br>
-for(int i=1;i&lt;=n;i++){<br>
-for(int j=i;j&lt;=n;j+=lowbit(j)){<br>
-tree[j]+=data[i];<br>
-}<br>
-}<br>
-}</p>
-<p>//单点更新</p>
-<p>void add(int x,int d){<br>
-while(x&lt;=n){<br>
-tree[x]+=d;<br>
-x+=lowbit(x);<br>
-}<br>
-}</p>
-<p>//区间查询</p>
-<p>inline int range_query(int l,int r){<br>
-int ans1=0,ans2=0;<br>
-for(int i=r;i&gt;0;i-=lowbit(i)){<br>
-ans1+=tree[i];<br>
-}<br>
-for(int i=l-1;i&gt;0;i-=lowbit(i)){<br>
-ans2+=tree[i];<br>
-}<br>
-return ans1-ans2;<br>
-}<br>
-区间修改+单点查询</p>
-<p>//用差分数组建树</p>
-<p>void build(){<br>
-for(int i=1;i&lt;=n;i++){<br>
-for(int j=i;j&lt;=n;j+=lowbit(j)){<br>
-tree[j]+=sub[i];<br>
-}<br>
-}<br>
-}</p>
-<p>//区间修改</p>
-<p>void range_add(int l,int r,int d){<br>
-for(int i=l;i&lt;=n;i+=lowbit(i)){<br>
-tree[i]+=d;<br>
-}<br>
-for(int i=r+1;i&lt;=n;i+=lowbit(i)){<br>
-tree[i]-=d;<br>
-}<br>
-}</p>
-<p>//单点查询</p>
-<p>inline int query(int x){<br>
-int ans=0;<br>
-for(int i=x;i&gt;0;i-=lowbit(i)){<br>
-ans+=tree[i];<br>
-}<br>
-return ans;<br>
-}<br>
-区间修改+区间查询</p>
-<p>//建树</p>
-<p>void build(){<br>
-for(int i=1;i&lt;=n;i++){<br>
-for(int j=i;j&lt;=n;j+=lowbit(j)){<br>
-tree1[j]+=sub[i];<br>
-}<br>
-}<br>
-for(int i=1;i&lt;=n;i++){<br>
-for(int j=i;j&lt;=n;j+=lowbit(j)){<br>
-tree2[j]+=sub[i]*i;<br>
-}<br>
-}<br>
-}</p>
-<p>//区间修改</p>
-<p>void range_add(int l,int r,int d){<br>
-for(int i=l;i&lt;=n;i+=lowbit(i)){<br>
-tree1[i]+=d;<br>
-}<br>
-for(int i=r+1;i&lt;=n;i+=lowbit(i)){<br>
-tree1[i]-=d;<br>
-}<br>
-for(int i=l;i&lt;=n;i+=lowbit(i)){<br>
-tree2[i]+=d*l;<br>
-}</p>
-<pre><code>for(int i=r+1;i&lt;=n;i+=lowbit(i)){
-    tree2[i]-=d*r-d;
+        <content type="html"><![CDATA[<pre><code>int data[500003];        //存单点数据
+int sub[500003];        //data的差分数组
+int tree[500003];        //维护sub
+int tree1[500003];
+int tree2[500003];        //维护 sub2
+int sub2[500002];        //表示sub[i]*i的前缀和
+
+//表示x的二进制表示从右向左第一个1换成十进制为多少
+
+inline int lowbit(int x){       
+    return x&amp;(-x);
+}
+单点修改+区间查询
+
+//建树
+
+void build(){      
+    for(int i=1;i&lt;=n;i++){
+        for(int j=i;j&lt;=n;j+=lowbit(j)){
+            tree[j]+=data[i];
+        }
+    }
+}   
+
+//单点更新
+
+void add(int x,int d){      
+    while(x&lt;=n){
+        tree[x]+=d;
+        x+=lowbit(x);    
+    }
+}
+
+//区间查询
+
+inline int range_query(int l,int r){    
+    int ans1=0,ans2=0;
+    for(int i=r;i&gt;0;i-=lowbit(i)){
+        ans1+=tree[i];
+    }
+    for(int i=l-1;i&gt;0;i-=lowbit(i)){
+        ans2+=tree[i];
+    }
+    return ans1-ans2;
+}
+区间修改+单点查询
+
+//用差分数组建树
+
+void build(){      
+    for(int i=1;i&lt;=n;i++){
+        for(int j=i;j&lt;=n;j+=lowbit(j)){
+            tree[j]+=sub[i];
+        }
+    }
+}   
+
+//区间修改
+
+void range_add(int l,int r,int d){      
+    for(int i=l;i&lt;=n;i+=lowbit(i)){
+        tree[i]+=d;
+    }
+    for(int i=r+1;i&lt;=n;i+=lowbit(i)){
+        tree[i]-=d;
+    }
+}
+
+//单点查询
+
+inline int query(int x){
+    int ans=0;
+    for(int i=x;i&gt;0;i-=lowbit(i)){
+        ans+=tree[i];
+    }
+    return ans;
+}
+区间修改+区间查询
+
+//建树
+
+void build(){
+    for(int i=1;i&lt;=n;i++){
+        for(int j=i;j&lt;=n;j+=lowbit(j)){
+            tree1[j]+=sub[i];
+        }
+    }
+    for(int i=1;i&lt;=n;i++){
+        for(int j=i;j&lt;=n;j+=lowbit(j)){
+            tree2[j]+=sub[i]*i;
+        }
+    }
+}
+
+//区间修改
+
+void range_add(int l,int r,int d){
+    for(int i=l;i&lt;=n;i+=lowbit(i)){
+        tree1[i]+=d;
+    }
+    for(int i=r+1;i&lt;=n;i+=lowbit(i)){
+        tree1[i]-=d;
+    }
+    for(int i=l;i&lt;=n;i+=lowbit(i)){
+        tree2[i]+=d*l;
+    }
+    
+    for(int i=r+1;i&lt;=n;i+=lowbit(i)){
+        tree2[i]-=d*r-d;
+    }
+}
+
+//区间查询
+
+int range_query(int l,int r){
+    int ans1=0,ans2=0,s=0;
+    
+    for(int i=r;i&gt;0;i-=lowbit(i)){
+        s+=tree1[i];
+    }
+    ans1+=s*(r+1);
+    s=0;
+    for(int i=r;i&gt;0;i-=lowbit(i)){
+        s+=tree2[i];
+    }
+    ans1-=s;
+    s=0;
+    for(int i=l-1;i&gt;0;i-=lowbit(i)){
+        s+=tree1[i];
+    }
+    ans2+=s*l;
+    s=0;
+    for(int i=l-1;i&gt;0;i-=lowbit(i)){
+        s+=tree2[i];
+    }
+    ans2-=s;
+    return ans1-ans2;
 }
 </code></pre>
-<p>}</p>
-<p>//区间查询</p>
-<p>int range_query(int l,int r){<br>
-int ans1=0,ans2=0,s=0;</p>
-<pre><code>for(int i=r;i&gt;0;i-=lowbit(i)){
-    s+=tree1[i];
-}
-ans1+=s*(r+1);
-s=0;
-for(int i=r;i&gt;0;i-=lowbit(i)){
-    s+=tree2[i];
-}
-ans1-=s;
-s=0;
-for(int i=l-1;i&gt;0;i-=lowbit(i)){
-    s+=tree1[i];
-}
-ans2+=s*l;
-s=0;
-for(int i=l-1;i&gt;0;i-=lowbit(i)){
-    s+=tree2[i];
-}
-ans2-=s;
-return ans1-ans2;
-</code></pre>
-<p>}</p>
 ]]></content>
     </entry>
     <entry>
@@ -392,36 +432,42 @@ return ans1-ans2;
         <link href="https://1033180517.github.io/post/kmp/">
         </link>
         <updated>2020-07-07T16:42:06.000Z</updated>
-        <content type="html"><![CDATA[<p>//文本串和模式串<br>
-string str,pat;</p>
-<p>//next[i]表示模式串前i个字符组成的串其前缀后缀相通的最长长度<br>
-//也是在i出匹配失败时该跳转的位置<br>
-int next[10002];</p>
-<p>//得到next数组<br>
-void getnext(){<br>
-int i=0,j=-1;<br>
-next[0]=-1;<br>
-while(i&lt;pat.size()){<br>
-if(j==-1||pat[i]==pat[j]){<br>
-next[++i]=++j;<br>
-}<br>
-else j=next[j];<br>
-}<br>
-}</p>
-<p>//返回文本串中模式串出现的次数<br>
-int kmp(){<br>
-int i=0,j=0,len1=str.size(),len2=pat.size();<br>
-int ans=0;<br>
-while(i&lt;len1){<br>
-if(j==-1||str[i]<mark>pat[j]){<br>
-i++;<br>
-j++;<br>
-}<br>
-else j=next[j];<br>
-if(j</mark>len2)ans++;<br>
-}<br>
-return ans;<br>
-}</p>
+        <content type="html"><![CDATA[<pre><code>//文本串和模式串
+string str,pat;
+
+//next[i]表示模式串前i个字符组成的串其前缀后缀相通的最长长度
+//也是在i出匹配失败时该跳转的位置
+int next[10002];
+
+
+//得到next数组
+void getnext(){
+    int i=0,j=-1;
+    next[0]=-1;
+    while(i&lt;pat.size()){
+        if(j==-1||pat[i]==pat[j]){
+            next[++i]=++j;
+        }
+        else j=next[j];
+    }
+}
+
+
+//返回文本串中模式串出现的次数
+int kmp(){
+    int i=0,j=0,len1=str.size(),len2=pat.size();
+    int ans=0;
+    while(i&lt;len1){
+        if(j==-1||str[i]==pat[j]){
+            i++;
+            j++;
+        }
+        else j=next[j];
+        if(j==len2)ans++;
+    }
+    return ans;
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
@@ -430,97 +476,111 @@ return ans;<br>
         <link href="https://1033180517.github.io/post/xian-duan-shu/">
         </link>
         <updated>2020-07-07T16:41:22.000Z</updated>
-        <content type="html"><![CDATA[<p>ll n,m;<br>
-ll value[400002];<br>
-ll data[200002];<br>
-ll lazy[400002];</p>
-<p>//首先建树<br>
-void build(int o,int l,int r){<br>
-if(l==r){<br>
-value[o]=data[l];<br>
-return ;<br>
-}<br>
-ll m=(l+r)/2;<br>
-build(o<em>2,l,m);<br>
-build(o</em>2+1,m+1,r);<br>
-value[o]=max(value[o<em>2],value[o</em>2+1]);<br>
-}<br>
-单点更新+区间查询</p>
-<p>//单点更新，将x的value改为d<br>
-void update(int o,int l,int r,int x,int d){<br>
-if(l==r){<br>
-value[o]=d;<br>
-return ;<br>
-}<br>
-int m=(l+r)/2;<br>
-if(x&lt;=m)update(o<em>2,l,m,x,d);<br>
-if(m+1&lt;=x)update(o</em>2+1,m+1,r,x,d);<br>
-value[o]=max(value[o<em>2],value[o</em>2+1]);<br>
-}</p>
-<p>//查询区间[ql,qr]的最大值<br>
-int query(int o,int l,int r,int ql,int qr){<br>
-if(ql&lt;=l&amp;&amp;r&lt;=qr)return value[o];<br>
-int m=(l+r)/2;<br>
-int ans=0;<br>
-if(ql&lt;=m){<br>
-ans=max(ans,query(o<em>2,l,m,ql,qr));<br>
-}<br>
-if(qr&gt;=m+1){<br>
-ans=max(ans,query(o</em>2+1,m+1,r,ql,qr));<br>
-}<br>
-return ans;<br>
-}<br>
-区间更新+区间和查询</p>
-<p>//为区间[l,r]增加lazy标记d</p>
-<p>void free(int o,int l,int r,int d){<br>
-lazy[o]+=d;<br>
-value[o]+=d*(r-l+1);<br>
-}</p>
-<p>//将lazy标记向下传递</p>
-<p>void lazy_down(int o,int l,int r){<br>
-if(!lazy[o])return ;<br>
-int m=(l+r)/2;<br>
-free(o<em>2,l,m,lazy[o]);<br>
-free(o</em>2+1,m+1,r,lazy[o]);<br>
-lazy[o]=0;<br>
-}</p>
-<p>//维护lazy的父节点</p>
-<p>void push_up(int o){<br>
-value[o]=value[o<em>2]+value[o</em>2+1];<br>
-}</p>
-<p>//区间更新，[ql,qr]每个数都增加d</p>
-<p>void update(int o,int l,int r,int ql,int qr,int d){<br>
-if(ql&lt;=l&amp;&amp;r&lt;=qr){<br>
-free(o,l,r,d);<br>
-return ;<br>
-}<br>
-lazy_down(o,l,r);<br>
-int m=(l+r)/2;<br>
-if(ql&lt;=m){<br>
-update(o<em>2,l,m,ql,qr,d);<br>
-}<br>
-if(qr&gt;=m+1){<br>
-update(o</em>2+1,m+1,r,ql,qr,d);<br>
-}<br>
-push_up(o);<br>
-}</p>
-<p>//区间查询,[ql,qr]之和</p>
-<p>ll query(int o,int l,int r,int ql,int qr){<br>
-if(ql&lt;=l&amp;&amp;r&lt;=qr){<br>
-return value[o];<br>
-}<br>
-lazy_down(o,l,r);<br>
-ll ans=0;<br>
-int m=(l+r)/2;<br>
-if(ql&lt;=m){<br>
-ans+=query(o<em>2,l,m,ql,qr);<br>
-}<br>
-if(qr&gt;=m+1){<br>
-ans+=query(o</em>2+1,m+1,r,ql,qr);<br>
-}<br>
-return ans;<br>
-}<br>
-例题</p>
+        <content type="html"><![CDATA[<pre><code>ll n,m;
+ll value[400002];
+ll data[200002];
+ll lazy[400002];
+
+//首先建树
+void build(int o,int l,int r){        
+    if(l==r){
+        value[o]=data[l];
+        return ;
+    }
+    ll m=(l+r)/2;
+    build(o*2,l,m);
+    build(o*2+1,m+1,r);
+    value[o]=max(value[o*2],value[o*2+1]);
+}
+单点更新+区间查询 
+
+//单点更新，将x的value改为d
+void update(int o,int l,int r,int x,int d){      
+    if(l==r){
+        value[o]=d;
+        return ;
+    }
+    int m=(l+r)/2;
+    if(x&lt;=m)update(o*2,l,m,x,d);
+    if(m+1&lt;=x)update(o*2+1,m+1,r,x,d);
+    value[o]=max(value[o*2],value[o*2+1]);
+}
+
+//查询区间[ql,qr]的最大值
+int query(int o,int l,int r,int ql,int qr){       
+    if(ql&lt;=l&amp;&amp;r&lt;=qr)return value[o];
+    int m=(l+r)/2;
+    int ans=0;
+    if(ql&lt;=m){
+        ans=max(ans,query(o*2,l,m,ql,qr));
+    }
+    if(qr&gt;=m+1){
+        ans=max(ans,query(o*2+1,m+1,r,ql,qr));
+    }
+    return ans;
+}
+区间更新+区间和查询
+
+//为区间[l,r]增加lazy标记d
+
+void free(int o,int l,int r,int d){      
+    lazy[o]+=d;
+    value[o]+=d*(r-l+1);
+}
+
+//将lazy标记向下传递
+
+void lazy_down(int o,int l,int r){       
+    if(!lazy[o])return ;
+    int m=(l+r)/2;
+    free(o*2,l,m,lazy[o]);
+    free(o*2+1,m+1,r,lazy[o]);
+    lazy[o]=0;
+}
+
+//维护lazy的父节点
+
+void push_up(int o){      
+    value[o]=value[o*2]+value[o*2+1];
+}
+
+//区间更新，[ql,qr]每个数都增加d
+
+void update(int o,int l,int r,int ql,int qr,int d){     
+    if(ql&lt;=l&amp;&amp;r&lt;=qr){
+        free(o,l,r,d);
+        return ;
+    }
+    lazy_down(o,l,r);    
+    int m=(l+r)/2;
+    if(ql&lt;=m){
+        update(o*2,l,m,ql,qr,d);
+    }
+    if(qr&gt;=m+1){
+        update(o*2+1,m+1,r,ql,qr,d);
+    }
+    push_up(o);
+}
+
+//区间查询,[ql,qr]之和 
+
+ll query(int o,int l,int r,int ql,int qr){     
+    if(ql&lt;=l&amp;&amp;r&lt;=qr){
+        return value[o];
+    }
+    lazy_down(o,l,r);
+    ll ans=0;
+    int m=(l+r)/2;
+    if(ql&lt;=m){
+        ans+=query(o*2,l,m,ql,qr);
+    }
+    if(qr&gt;=m+1){
+        ans+=query(o*2+1,m+1,r,ql,qr);
+    }
+    return ans;
+}
+</code></pre>
+<p>例题</p>
 <p>HDU – 1754</p>
 <p>HDU – 1556</p>
 <p>luogu – P3372</p>
@@ -533,24 +593,25 @@ return ans;<br>
         <link href="https://1033180517.github.io/post/kuai-su-mi/">
         </link>
         <updated>2020-07-07T16:40:26.000Z</updated>
-        <content type="html"><![CDATA[<p>ll b,p,k,ans=1;<br>
-ll x,y,z;</p>
-<p>int main(){<br>
-cin&gt;&gt;b&gt;&gt;p&gt;&gt;k;<br>
-x=b;y=p;z=k;</p>
-<pre><code>while(y&gt;1){
-    if(y%2==0){
-        x*=x; y/=2; x%=z;
+        <content type="html"><![CDATA[<pre><code>ll b,p,k,ans=1;
+ll x,y,z;
+
+int main(){
+    cin&gt;&gt;b&gt;&gt;p&gt;&gt;k;
+    x=b;y=p;z=k;
+    while(y&gt;1){
+        if(y%2==0){
+            x*=x; y/=2; x%=z;
+        }
+        else{
+            ans*=x; ans%=z;
+            x*=x; y/=2; x%=z;
+        }
     }
-    else{
-        ans*=x; ans%=z;
-        x*=x; y/=2; x%=z;
-    }
+    ans*=x; ans%=z;
+    cout&lt;&lt;ans&lt;&lt;endl;
 }
-ans*=x; ans%=z;
-cout&lt;&lt;ans&lt;&lt;endl;
 </code></pre>
-<p>}</p>
 ]]></content>
     </entry>
     <entry>
@@ -559,22 +620,24 @@ cout&lt;&lt;ans&lt;&lt;endl;
         <link href="https://1033180517.github.io/post/xian-xing-shai-su-shu/">
         </link>
         <updated>2020-07-07T16:17:39.000Z</updated>
-        <content type="html"><![CDATA[<p>const ll N = 10000050;<br>
-ll prime[N] = {0};    //记录质数<br>
-ll num_prime =0;     //表示质数数量<br>
-int isNotPrime[N] = {1, 1};    //记录n是否为质数</p>
-<p>int main(){<br>
-for(ll i=2;i&lt;N;i++){<br>
-if(!isNotPrime[i]){        // i为质数，则记录<br>
-prime[num_prime++]=i;<br>
-}<br>
-for(ll j=0;j&lt;num_prime&amp;&amp;i<em>prime[j]&lt;N;j++){    // 质数</em>i为合数，记录<br>
-isNotPrime[i * prime[j]] = 1;<br>
-if(!(i%prime[j]))  //防止重复筛选<br>
-break;<br>
-}<br>
-}<br>
-}</p>
+        <content type="html"><![CDATA[<pre><code>const ll N = 10000050;   
+ll prime[N] = {0};    //记录质数
+ll num_prime =0;     //表示质数数量
+int isNotPrime[N] = {1, 1};    //记录n是否为质数  
+
+int main(){     
+    for(ll i=2;i&lt;N;i++){
+        if(!isNotPrime[i]){        // i为质数，则记录
+            prime[num_prime++]=i;
+        }    
+        for(ll j=0;j&lt;num_prime&amp;&amp;i*prime[j]&lt;N;j++){    // 质数*i为合数，记录
+            isNotPrime[i * prime[j]] = 1;  
+                if(!(i%prime[j]))  //防止重复筛选       
+                    break;           
+        }           
+    }       
+}
+</code></pre>
 ]]></content>
     </entry>
 </feed>

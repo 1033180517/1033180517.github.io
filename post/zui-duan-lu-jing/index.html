@@ -7,7 +7,7 @@
 <meta name="description" content="my blog">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594303145735">
+<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594303771159">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -92,64 +92,68 @@
             </p>
             
             <div class="post-content">
-              <p>1.Floyd O(n^3)</p>
-<p>//暴力松弛，优化后，Map[i][j]表示结点i到结点j的最短距离</p>
-<p>int n，Map[1005][1005];<br>
-int main(){<br>
-cin&gt;&gt;n;<br>
-for(int i=1;i&lt;=n;i++){<br>
-for(int j=1;j&lt;=n;j++){<br>
-scanf(“%d”,&amp;Map[i][j]);<br>
-}<br>
-}<br>
-for(int k=1;k&lt;=n;k++){<br>
-for(int i=1;i&lt;=n;i++){<br>
-for(int j=1;j&lt;=n;j++){<br>
-if(Map[i][j]&gt;Map[i][k]+Map[k][j]){<br>
-Map[i][j]=Map[i][k]+Map[k][j];<br>
-}<br>
-}<br>
-}<br>
-}<br>
-}<br>
-2.朴素Dijkstra  O(n^2)</p>
-<p>//单源最短路，优化后，dis[i]表示结点s到结点i的最短距离</p>
-<p>int n,m,s,s1,s2,s3,Map[10002][10002];<br>
-int dis[10002],vis[10002];<br>
-int main(){<br>
-cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;<br>
-for(int i=1;i&lt;=n;i++){<br>
-for(int j=1;j&lt;=n;j++){<br>
-Map[i][j]=inf;<br>
-}<br>
-Map[i][i]=0;<br>
-}<br>
-while(m–){<br>
-scanf(“%d%d%d”,&amp;s1,&amp;s2,&amp;s3);<br>
-if(s3&lt;Map[s1][s2])Map[s1][s2]=s3;<br>
-if(s3&lt;Map[s2][s1])Map[s2][s1]=s3;<br>
-}<br>
-for(int i=1;i&lt;=n;i++){<br>
-dis[i]=Map[s][i];<br>
-}<br>
-memset(vis,0,sizeof(vis));<br>
-vis[s]=1;<br>
-for(int i=1;i&lt;=n;i++){<br>
-int u=inf,p=-1;<br>
-for(int j=1;j&lt;=n;j++){<br>
-if(!vis[j]&amp;&amp;u&gt;dis[j]){<br>
-u=dis[j];<br>
-p=j;<br>
-}<br>
-}<br>
-vis[p]=1;<br>
-for(int j=1;j&lt;=n;j++){<br>
-if(!vis[j]&amp;&amp;dis[j]&gt;dis[p]+Map[p][j]){<br>
-dis[j]=dis[p]+Map[p][j];<br>
-}<br>
-}<br>
-}<br>
-}</p>
+              <h3 id="1floyd-on3">1.Floyd O(n^3)</h3>
+<pre><code>//暴力松弛，优化后，Map[i][j]表示结点i到结点j的最短距离
+
+int n，Map[1005][1005];
+int main(){
+    cin&gt;&gt;n;
+    for(int i=1;i&lt;=n;i++){
+        for(int j=1;j&lt;=n;j++){
+            scanf(“%d”,&amp;Map[i][j]);
+        }
+    }
+    for(int k=1;k&lt;=n;k++){
+        for(int i=1;i&lt;=n;i++){
+            for(int j=1;j&lt;=n;j++){
+                if(Map[i][j]&gt;Map[i][k]+Map[k][j]){
+                    Map[i][j]=Map[i][k]+Map[k][j];
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="2朴素dijkstra-on2">2.朴素Dijkstra  O(n^2)</h3>
+<pre><code>//单源最短路，优化后，dis[i]表示结点s到结点i的最短距离
+
+int n,m,s,s1,s2,s3,Map[10002][10002];
+int dis[10002],vis[10002];
+int main(){
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;
+    for(int i=1;i&lt;=n;i++){
+        for(int j=1;j&lt;=n;j++){
+            Map[i][j]=inf;
+        }
+        Map[i][i]=0;
+    }
+    while(m–){
+        scanf(“%d%d%d”,&amp;s1,&amp;s2,&amp;s3);
+        if(s3&lt;Map[s1][s2])Map[s1][s2]=s3;
+        if(s3&lt;Map[s2][s1])Map[s2][s1]=s3;
+    }
+    for(int i=1;i&lt;=n;i++){
+        dis[i]=Map[s][i];
+    }
+    memset(vis,0,sizeof(vis));
+    vis[s]=1;
+    for(int i=1;i&lt;=n;i++){
+        int u=inf,p=-1;
+        for(int j=1;j&lt;=n;j++){
+            if(!vis[j]&amp;&amp;u&gt;dis[j]){
+                u=dis[j];
+                p=j;
+            }
+        }
+        vis[p]=1;
+        for(int j=1;j&lt;=n;j++){
+            if(!vis[j]&amp;&amp;dis[j]&gt;dis[p]+Map[p][j]){
+                dis[j]=dis[p]+Map[p][j];
+            }
+        }
+    }
+}
+</code></pre>
 
             </div>
           </article>
@@ -173,7 +177,7 @@ dis[j]=dis[p]+Map[p][j];<br>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://1033180517.github.io/images/avatar.png?v=1594303145735" class="no-responsive avatar">
+    <img src="https://1033180517.github.io/images/avatar.png?v=1594303771159" class="no-responsive avatar">
     <div class="text-muted">my blog</div>
     <div class="social-container">
       
@@ -259,11 +263,11 @@ dis[j]=dis[p]+Map[p][j];<br>
     </div>
     <div class="row">
       
-        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge ">
+        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge success">
           笔记
         </a>
       
-        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge secondary">
+        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge success">
           算法
         </a>
       

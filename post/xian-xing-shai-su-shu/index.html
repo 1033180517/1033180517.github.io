@@ -7,7 +7,7 @@
 <meta name="description" content="my blog">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594303145735">
+<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594303771159">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -92,22 +92,24 @@
             </p>
             
             <div class="post-content">
-              <p>const ll N = 10000050;<br>
-ll prime[N] = {0};    //记录质数<br>
-ll num_prime =0;     //表示质数数量<br>
-int isNotPrime[N] = {1, 1};    //记录n是否为质数</p>
-<p>int main(){<br>
-for(ll i=2;i&lt;N;i++){<br>
-if(!isNotPrime[i]){        // i为质数，则记录<br>
-prime[num_prime++]=i;<br>
-}<br>
-for(ll j=0;j&lt;num_prime&amp;&amp;i<em>prime[j]&lt;N;j++){    // 质数</em>i为合数，记录<br>
-isNotPrime[i * prime[j]] = 1;<br>
-if(!(i%prime[j]))  //防止重复筛选<br>
-break;<br>
-}<br>
-}<br>
-}</p>
+              <pre><code>const ll N = 10000050;   
+ll prime[N] = {0};    //记录质数
+ll num_prime =0;     //表示质数数量
+int isNotPrime[N] = {1, 1};    //记录n是否为质数  
+
+int main(){     
+    for(ll i=2;i&lt;N;i++){
+        if(!isNotPrime[i]){        // i为质数，则记录
+            prime[num_prime++]=i;
+        }    
+        for(ll j=0;j&lt;num_prime&amp;&amp;i*prime[j]&lt;N;j++){    // 质数*i为合数，记录
+            isNotPrime[i * prime[j]] = 1;  
+                if(!(i%prime[j]))  //防止重复筛选       
+                    break;           
+        }           
+    }       
+}
+</code></pre>
 
             </div>
           </article>
@@ -120,7 +122,7 @@ break;<br>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://1033180517.github.io/images/avatar.png?v=1594303145735" class="no-responsive avatar">
+    <img src="https://1033180517.github.io/images/avatar.png?v=1594303771159" class="no-responsive avatar">
     <div class="text-muted">my blog</div>
     <div class="social-container">
       
@@ -206,11 +208,11 @@ break;<br>
     </div>
     <div class="row">
       
-        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge ">
+        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge success">
           笔记
         </a>
       
-        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge ">
+        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge warning">
           算法
         </a>
       

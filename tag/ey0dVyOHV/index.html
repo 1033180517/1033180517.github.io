@@ -7,7 +7,7 @@
 <meta name="description" content="my blog">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594303145735">
+<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594303771159">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -88,7 +88,7 @@
     <p class="article-meta">
       2020-07-08
       
-        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge secondary">
+        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge success">
           笔记
         </a>
       
@@ -96,18 +96,19 @@
     <p class="text-lead">
       <h1 id="set">Set</h1>
 <p>函数<br>
-<code>begin(), end(), clear(), empty(), insert(), erase(it), size()</code></p>
+begin(), end(), clear(), empty(), insert(), erase(it), size()</p>
 <p>迭代器<br>
-<code>set&lt;int&gt;::iterator it;</code></p>
-<p>自定义比较器<br>
-struct cmp{<br>
-bool operator()(const int &amp;a, const int &amp;b) const{<br>
-if(a&gt;b)<br>
-return 1;<br>
-return 0;<br>
-}<br>
-};<br>
-set &lt;int, cmp&gt; s;</p>
+set<int>::iterator it;</p>
+<p>自定义比较器</p>
+<pre><code>struct cmp{
+    bool operator()(const int &amp;a, const int &amp;b) const{
+        if(a&gt;b)
+            return 1;
+        return 0;
+    }
+};
+set &lt;int, cmp&gt; s;
+</code></pre>
 
     </p>
     <div class="row">
@@ -129,7 +130,7 @@ set &lt;int, cmp&gt; s;</p>
       </div>
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://1033180517.github.io/images/avatar.png?v=1594303145735" class="no-responsive avatar">
+    <img src="https://1033180517.github.io/images/avatar.png?v=1594303771159" class="no-responsive avatar">
     <div class="text-muted">my blog</div>
     <div class="social-container">
       
@@ -215,7 +216,7 @@ set &lt;int, cmp&gt; s;</p>
     </div>
     <div class="row">
       
-        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge secondary">
+        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge success">
           笔记
         </a>
       

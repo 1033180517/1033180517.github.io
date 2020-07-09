@@ -7,7 +7,7 @@
 <meta name="description" content="my blog">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594303145735">
+<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594303771159">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -85,104 +85,118 @@
             <p class="article-meta">
               2020-07-08
               
-                <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge ">
+                <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge warning">
                   算法
                 </a>
               
             </p>
             
             <div class="post-content">
-              <p>ll n,m;<br>
-ll value[400002];<br>
-ll data[200002];<br>
-ll lazy[400002];</p>
-<p>//首先建树<br>
-void build(int o,int l,int r){<br>
-if(l==r){<br>
-value[o]=data[l];<br>
-return ;<br>
-}<br>
-ll m=(l+r)/2;<br>
-build(o<em>2,l,m);<br>
-build(o</em>2+1,m+1,r);<br>
-value[o]=max(value[o<em>2],value[o</em>2+1]);<br>
-}<br>
-单点更新+区间查询</p>
-<p>//单点更新，将x的value改为d<br>
-void update(int o,int l,int r,int x,int d){<br>
-if(l==r){<br>
-value[o]=d;<br>
-return ;<br>
-}<br>
-int m=(l+r)/2;<br>
-if(x&lt;=m)update(o<em>2,l,m,x,d);<br>
-if(m+1&lt;=x)update(o</em>2+1,m+1,r,x,d);<br>
-value[o]=max(value[o<em>2],value[o</em>2+1]);<br>
-}</p>
-<p>//查询区间[ql,qr]的最大值<br>
-int query(int o,int l,int r,int ql,int qr){<br>
-if(ql&lt;=l&amp;&amp;r&lt;=qr)return value[o];<br>
-int m=(l+r)/2;<br>
-int ans=0;<br>
-if(ql&lt;=m){<br>
-ans=max(ans,query(o<em>2,l,m,ql,qr));<br>
-}<br>
-if(qr&gt;=m+1){<br>
-ans=max(ans,query(o</em>2+1,m+1,r,ql,qr));<br>
-}<br>
-return ans;<br>
-}<br>
-区间更新+区间和查询</p>
-<p>//为区间[l,r]增加lazy标记d</p>
-<p>void free(int o,int l,int r,int d){<br>
-lazy[o]+=d;<br>
-value[o]+=d*(r-l+1);<br>
-}</p>
-<p>//将lazy标记向下传递</p>
-<p>void lazy_down(int o,int l,int r){<br>
-if(!lazy[o])return ;<br>
-int m=(l+r)/2;<br>
-free(o<em>2,l,m,lazy[o]);<br>
-free(o</em>2+1,m+1,r,lazy[o]);<br>
-lazy[o]=0;<br>
-}</p>
-<p>//维护lazy的父节点</p>
-<p>void push_up(int o){<br>
-value[o]=value[o<em>2]+value[o</em>2+1];<br>
-}</p>
-<p>//区间更新，[ql,qr]每个数都增加d</p>
-<p>void update(int o,int l,int r,int ql,int qr,int d){<br>
-if(ql&lt;=l&amp;&amp;r&lt;=qr){<br>
-free(o,l,r,d);<br>
-return ;<br>
-}<br>
-lazy_down(o,l,r);<br>
-int m=(l+r)/2;<br>
-if(ql&lt;=m){<br>
-update(o<em>2,l,m,ql,qr,d);<br>
-}<br>
-if(qr&gt;=m+1){<br>
-update(o</em>2+1,m+1,r,ql,qr,d);<br>
-}<br>
-push_up(o);<br>
-}</p>
-<p>//区间查询,[ql,qr]之和</p>
-<p>ll query(int o,int l,int r,int ql,int qr){<br>
-if(ql&lt;=l&amp;&amp;r&lt;=qr){<br>
-return value[o];<br>
-}<br>
-lazy_down(o,l,r);<br>
-ll ans=0;<br>
-int m=(l+r)/2;<br>
-if(ql&lt;=m){<br>
-ans+=query(o<em>2,l,m,ql,qr);<br>
-}<br>
-if(qr&gt;=m+1){<br>
-ans+=query(o</em>2+1,m+1,r,ql,qr);<br>
-}<br>
-return ans;<br>
-}<br>
-例题</p>
+              <pre><code>ll n,m;
+ll value[400002];
+ll data[200002];
+ll lazy[400002];
+
+//首先建树
+void build(int o,int l,int r){        
+    if(l==r){
+        value[o]=data[l];
+        return ;
+    }
+    ll m=(l+r)/2;
+    build(o*2,l,m);
+    build(o*2+1,m+1,r);
+    value[o]=max(value[o*2],value[o*2+1]);
+}
+单点更新+区间查询 
+
+//单点更新，将x的value改为d
+void update(int o,int l,int r,int x,int d){      
+    if(l==r){
+        value[o]=d;
+        return ;
+    }
+    int m=(l+r)/2;
+    if(x&lt;=m)update(o*2,l,m,x,d);
+    if(m+1&lt;=x)update(o*2+1,m+1,r,x,d);
+    value[o]=max(value[o*2],value[o*2+1]);
+}
+
+//查询区间[ql,qr]的最大值
+int query(int o,int l,int r,int ql,int qr){       
+    if(ql&lt;=l&amp;&amp;r&lt;=qr)return value[o];
+    int m=(l+r)/2;
+    int ans=0;
+    if(ql&lt;=m){
+        ans=max(ans,query(o*2,l,m,ql,qr));
+    }
+    if(qr&gt;=m+1){
+        ans=max(ans,query(o*2+1,m+1,r,ql,qr));
+    }
+    return ans;
+}
+区间更新+区间和查询
+
+//为区间[l,r]增加lazy标记d
+
+void free(int o,int l,int r,int d){      
+    lazy[o]+=d;
+    value[o]+=d*(r-l+1);
+}
+
+//将lazy标记向下传递
+
+void lazy_down(int o,int l,int r){       
+    if(!lazy[o])return ;
+    int m=(l+r)/2;
+    free(o*2,l,m,lazy[o]);
+    free(o*2+1,m+1,r,lazy[o]);
+    lazy[o]=0;
+}
+
+//维护lazy的父节点
+
+void push_up(int o){      
+    value[o]=value[o*2]+value[o*2+1];
+}
+
+//区间更新，[ql,qr]每个数都增加d
+
+void update(int o,int l,int r,int ql,int qr,int d){     
+    if(ql&lt;=l&amp;&amp;r&lt;=qr){
+        free(o,l,r,d);
+        return ;
+    }
+    lazy_down(o,l,r);    
+    int m=(l+r)/2;
+    if(ql&lt;=m){
+        update(o*2,l,m,ql,qr,d);
+    }
+    if(qr&gt;=m+1){
+        update(o*2+1,m+1,r,ql,qr,d);
+    }
+    push_up(o);
+}
+
+//区间查询,[ql,qr]之和 
+
+ll query(int o,int l,int r,int ql,int qr){     
+    if(ql&lt;=l&amp;&amp;r&lt;=qr){
+        return value[o];
+    }
+    lazy_down(o,l,r);
+    ll ans=0;
+    int m=(l+r)/2;
+    if(ql&lt;=m){
+        ans+=query(o*2,l,m,ql,qr);
+    }
+    if(qr&gt;=m+1){
+        ans+=query(o*2+1,m+1,r,ql,qr);
+    }
+    return ans;
+}
+</code></pre>
+<p>例题</p>
 <p>HDU – 1754</p>
 <p>HDU – 1556</p>
 <p>luogu – P3372</p>
@@ -210,7 +224,7 @@ return ans;<br>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://1033180517.github.io/images/avatar.png?v=1594303145735" class="no-responsive avatar">
+    <img src="https://1033180517.github.io/images/avatar.png?v=1594303771159" class="no-responsive avatar">
     <div class="text-muted">my blog</div>
     <div class="social-container">
       
@@ -296,11 +310,11 @@ return ans;<br>
     </div>
     <div class="row">
       
-        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge warning">
+        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge ">
           笔记
         </a>
       
-        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge ">
+        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge secondary">
           算法
         </a>
       
