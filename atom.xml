@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://1033180517.github.io</id>
     <title>Xiaoze&apos;s blog</title>
-    <updated>2020-07-09T14:18:16.568Z</updated>
+    <updated>2020-07-11T09:21:12.479Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://1033180517.github.io"/>
     <link rel="self" href="https://1033180517.github.io/atom.xml"/>
@@ -16,9 +16,35 @@
         <link href="https://1033180517.github.io/post/acm-bi-ji-chi-xu-geng-xin/">
         </link>
         <updated>2020-07-08T00:09:58.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="你们这些搞acm的-能找到女朋友吗">你们这些搞acm的 ，能找到女朋友吗？</h3>
+        <summary type="html"><![CDATA[<h2 id="你们这些搞acm的-能找到女朋友吗">你们这些搞acm的 ，能找到女朋友吗？</h2>
+<p>###第一阶段<br>
+凸包<br>
+hash表<br>
+###第二阶段<br>
+二分图匹配，最小路径覆盖<br>
+网络流，最小费用流<br>
+LCS，三角剖分<br>
+博弈树，二进制法<br>
+最大团，最大独立集<br>
+判断点在多边形内<br>
+差分约束系统<br>
+###第三阶段<br>
+先上个紫，没什么问题吧。。</p>
 ]]></summary>
-        <content type="html"><![CDATA[<h3 id="你们这些搞acm的-能找到女朋友吗">你们这些搞acm的 ，能找到女朋友吗？</h3>
+        <content type="html"><![CDATA[<h2 id="你们这些搞acm的-能找到女朋友吗">你们这些搞acm的 ，能找到女朋友吗？</h2>
+<p>###第一阶段<br>
+凸包<br>
+hash表<br>
+###第二阶段<br>
+二分图匹配，最小路径覆盖<br>
+网络流，最小费用流<br>
+LCS，三角剖分<br>
+博弈树，二进制法<br>
+最大团，最大独立集<br>
+判断点在多边形内<br>
+差分约束系统<br>
+###第三阶段<br>
+先上个紫，没什么问题吧。。</p>
 <!-- more -->
 <h1 id="set">Set</h1>
 <p>函数<br>
