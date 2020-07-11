@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Xiaoze&#39;s blog</title>
+<title>凸包 | Xiaoze&#39;s blog</title>
 <meta name="description" content="my blog">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,6 +23,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://1033180517.github.io">Xiaoze&#39;s blog</a></h3>
@@ -68,53 +69,55 @@
   </div>
 </nav>
 
-
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
+          <article class="article">
+            <h1>凸包</h1>
+            <p class="article-meta">
+              2020-07-11
+              
+                <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge success">
+                  笔记
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <h1 id="问题描述">问题描述</h1>
+<p>二维上有n个点，求覆盖平面上n个点的最小的凸多边形</p>
+<h2 id="1-jarvis算法">1. Jarvis算法</h2>
+<p>时间复杂度：O(nm), n为点数，m为凸多边形顶点数</p>
+<p>取最下面的点P0, 斜率k为0，按照逆时针旋转，找到第一个点P1,以此类推<br>
+若同时有多个点符合条件，选取最远的点</p>
+<h2 id="2-graham算法">2. Graham算法</h2>
+<p>时间复杂度：O(nlogn)</p>
+<p>取最下面的点P0<br>
+按照极坐标逆时针方向将剩下的点排序<br>
+维护一个栈<br>
+每次选择一个点，与栈顶的两个点进行判断<br>
+若形成“凹包”，将栈顶踢出，继续判断，最后将点进栈</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
           
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://1033180517.github.io/post/shu-zhuang-shu-zu/">树状数组</a>
-    </h2>
-    <p class="article-meta">
-      2020-07-08
-      
-        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge secondary">
-          算法
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://1033180517.github.io/post/shu-zhuang-shu-zu/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://1033180517.github.io/post/acm-bi-ji-chi-xu-geng-xin/">
+                <h3 class="post-title">
+                  acm笔记（持续更新）
+                </h3>
+              </a>
+            </div>
+          
         </div>
         
-        <div class="row flex-edges">
-  
-    <a href="https://1033180517.github.io/page/5/" class="paper-btn">
-      上一页
-    </a>
-  
-  
-    <a href="https://1033180517.github.io/page/7/" class="paper-btn">
-      下一页
-    </a>
-  
-</div>
-
       </div>
-      
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://1033180517.github.io/images/avatar.png?v=1594463941600" class="no-responsive avatar">
@@ -213,7 +216,7 @@
           笔记
         </a>
       
-        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge warning">
+        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge secondary">
           算法
         </a>
       
@@ -224,7 +227,9 @@
   </div>
 </div>
 
+
     </div>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 <script type="application/javascript">
