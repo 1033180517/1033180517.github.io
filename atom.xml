@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://1033180517.github.io</id>
     <title>Xiaoze&apos;s blog</title>
-    <updated>2020-07-11T10:39:14.947Z</updated>
+    <updated>2020-07-11T10:42:23.226Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://1033180517.github.io"/>
     <link rel="self" href="https://1033180517.github.io/atom.xml"/>
@@ -93,7 +93,7 @@ for(auto t:v){
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[最大流]]></title>
+        <title type="html"><![CDATA[最大流（模板）]]></title>
         <id>https://1033180517.github.io/post/zui-da-liu/</id>
         <link href="https://1033180517.github.io/post/zui-da-liu/">
         </link>
@@ -153,7 +153,7 @@ int main(){
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[最短路径]]></title>
+        <title type="html"><![CDATA[最短路径（模板）]]></title>
         <id>https://1033180517.github.io/post/zui-duan-lu-jing/</id>
         <link href="https://1033180517.github.io/post/zui-duan-lu-jing/">
         </link>
@@ -223,7 +223,7 @@ int main(){
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[最小生成树]]></title>
+        <title type="html"><![CDATA[最小生成树（模板）]]></title>
         <id>https://1033180517.github.io/post/zui-xiao-sheng-cheng-shu/</id>
         <link href="https://1033180517.github.io/post/zui-xiao-sheng-cheng-shu/">
         </link>
@@ -315,7 +315,7 @@ int main(){
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[树状数组]]></title>
+        <title type="html"><![CDATA[树状数组（模板）]]></title>
         <id>https://1033180517.github.io/post/shu-zhuang-shu-zu/</id>
         <link href="https://1033180517.github.io/post/shu-zhuang-shu-zu/">
         </link>
@@ -462,7 +462,7 @@ int range_query(int l,int r){
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[KMP]]></title>
+        <title type="html"><![CDATA[KMP（模板）]]></title>
         <id>https://1033180517.github.io/post/kmp/</id>
         <link href="https://1033180517.github.io/post/kmp/">
         </link>
@@ -506,7 +506,7 @@ int kmp(){
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[线段树]]></title>
+        <title type="html"><![CDATA[线段树（模板）]]></title>
         <id>https://1033180517.github.io/post/xian-duan-shu/</id>
         <link href="https://1033180517.github.io/post/xian-duan-shu/">
         </link>
@@ -623,7 +623,7 @@ ll query(int o,int l,int r,int ql,int qr){
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[快速幂]]></title>
+        <title type="html"><![CDATA[快速幂（模板）]]></title>
         <id>https://1033180517.github.io/post/kuai-su-mi/</id>
         <link href="https://1033180517.github.io/post/kuai-su-mi/">
         </link>
@@ -650,7 +650,7 @@ int main(){
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[线性筛素数]]></title>
+        <title type="html"><![CDATA[线性筛素数（模板）]]></title>
         <id>https://1033180517.github.io/post/xian-xing-shai-su-shu/</id>
         <link href="https://1033180517.github.io/post/xian-xing-shai-su-shu/">
         </link>
