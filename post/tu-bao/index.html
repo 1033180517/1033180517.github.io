@@ -7,7 +7,7 @@
 <meta name="description" content="my blog">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594464122090">
+<link rel="shortcut icon" href="https://1033180517.github.io/favicon.ico?v=1594605815596">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -77,7 +77,7 @@
             <p class="article-meta">
               2020-07-11
               
-                <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge ">
+                <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge warning">
                   算法
                 </a>
               
@@ -97,6 +97,14 @@
 维护一个栈<br>
 每次选择一个点，与栈顶的两个点进行判断<br>
 若形成“凹包”，将栈顶踢出，继续判断，最后将点进栈</p>
+<h2 id="3andrew算法">3.Andrew算法</h2>
+<p>时间复杂度: O(nlogn)</p>
+<p>将点按照x坐标排序<br>
+将P0,P1入栈，然后对每个点遍历<br>
+若点在前两点连线的左边，则入栈<br>
+若在右边，则前一个点出栈<br>
+得到下凸包<br>
+再反向遍历，即可得到凸包</p>
 
             </div>
           </article>
@@ -120,7 +128,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://1033180517.github.io/images/avatar.png?v=1594464122090" class="no-responsive avatar">
+    <img src="https://1033180517.github.io/images/avatar.png?v=1594605815596" class="no-responsive avatar">
     <div class="text-muted">my blog</div>
     <div class="social-container">
       
@@ -212,15 +220,15 @@
     </div>
     <div class="row">
       
-        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge ">
+        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge success">
           算法
         </a>
       
-        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge warning">
+        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge ">
           笔记
         </a>
       
-        <a href="https://1033180517.github.io/tag/8RVXQ2hex/" class="badge warning">
+        <a href="https://1033180517.github.io/tag/8RVXQ2hex/" class="badge success">
           模板
         </a>
       

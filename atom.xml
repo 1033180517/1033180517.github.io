@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://1033180517.github.io</id>
     <title>Xiaoze&apos;s blog</title>
-    <updated>2020-07-11T10:42:23.226Z</updated>
+    <updated>2020-07-13T02:03:38.002Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://1033180517.github.io"/>
     <link rel="self" href="https://1033180517.github.io/atom.xml"/>
@@ -29,6 +29,14 @@
 维护一个栈<br>
 每次选择一个点，与栈顶的两个点进行判断<br>
 若形成“凹包”，将栈顶踢出，继续判断，最后将点进栈</p>
+<h2 id="3andrew算法">3.Andrew算法</h2>
+<p>时间复杂度: O(nlogn)</p>
+<p>将点按照x坐标排序<br>
+将P0,P1入栈，然后对每个点遍历<br>
+若点在前两点连线的左边，则入栈<br>
+若在右边，则前一个点出栈<br>
+得到下凸包<br>
+再反向遍历，即可得到凸包</p>
 ]]></content>
     </entry>
     <entry>
@@ -41,6 +49,7 @@
 <p>先上个紫，没什么问题吧。。</p>
 <p>###############<br>
 凸包<br>
+分数取模<br>
 hash表<br>
 KMP<br>
 ###############<br>
@@ -56,6 +65,7 @@ LCS，三角剖分<br>
 <p>先上个紫，没什么问题吧。。</p>
 <p>###############<br>
 凸包<br>
+分数取模<br>
 hash表<br>
 KMP<br>
 ###############<br>
