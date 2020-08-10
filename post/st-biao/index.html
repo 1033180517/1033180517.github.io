@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>最短路径（模板） | Xiaoze&#39;s blog</title>
+<title>ST表 | Xiaoze&#39;s blog</title>
 <meta name="description" content="my blog">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -73,77 +73,33 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>最短路径（模板）</h1>
+            <h1>ST表</h1>
             <p class="article-meta">
-              2020-07-08
+              2020-08-10
               
-                <a href="https://1033180517.github.io/tag/8RVXQ2hex/" class="badge warning">
-                  模板
+                <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge warning">
+                  算法
                 </a>
               
             </p>
             
             <div class="post-content">
-              <h3 id="1floyd-on3">1.Floyd O(n^3)</h3>
-<pre><code>//暴力松弛，优化后，Map[i][j]表示结点i到结点j的最短距离
-
-int n，Map[1005][1005];
-int main(){
-    cin&gt;&gt;n;
-    for(int i=1;i&lt;=n;i++){
-        for(int j=1;j&lt;=n;j++){
-            scanf(“%d”,&amp;Map[i][j]);
-        }
-    }
-    for(int k=1;k&lt;=n;k++){
-        for(int i=1;i&lt;=n;i++){
-            for(int j=1;j&lt;=n;j++){
-                if(Map[i][j]&gt;Map[i][k]+Map[k][j]){
-                    Map[i][j]=Map[i][k]+Map[k][j];
-                }
-            }
-        }
-    }
-}
+              <p>解决RMQ问题（区间最值问题）<br>
+O(nlogn）预处理，O(1)查询</p>
+<p>利用倍增思想，用Max[i][j]表示从i位置开始2^j个数的最大值<br>
+转移的时候分成两个区间各自取值</p>
+<p>查询的时候 先算出log2（区间长度）为k<br>
+对l点和r-2^k+1进行查询即可</p>
+<h2 id="预处理">预处理</h2>
+<pre><code>for(int j=1;j&lt;=21;j++)
+        for(int i=1;i+(1&lt;&lt;j)-1&lt;=N;i++)
+            Max[i][j]=max(Max[i][j-1],Max[i+(1&lt;&lt;(j-1))][j-1]);
 </code></pre>
-<h3 id="2朴素dijkstra-on2">2.朴素Dijkstra  O(n^2)</h3>
-<pre><code>//单源最短路，优化后，dis[i]表示结点s到结点i的最短距离
-
-int n,m,s,s1,s2,s3,Map[10002][10002];
-int dis[10002],vis[10002];
-int main(){
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;
-    for(int i=1;i&lt;=n;i++){
-        for(int j=1;j&lt;=n;j++){
-            Map[i][j]=inf;
-        }
-        Map[i][i]=0;
-    }
-    while(m–){
-        scanf(“%d%d%d”,&amp;s1,&amp;s2,&amp;s3);
-        if(s3&lt;Map[s1][s2])Map[s1][s2]=s3;
-        if(s3&lt;Map[s2][s1])Map[s2][s1]=s3;
-    }
-    for(int i=1;i&lt;=n;i++){
-        dis[i]=Map[s][i];
-    }
-    memset(vis,0,sizeof(vis));
-    vis[s]=1;
-    for(int i=1;i&lt;=n;i++){
-        int u=inf,p=-1;
-        for(int j=1;j&lt;=n;j++){
-            if(!vis[j]&amp;&amp;u&gt;dis[j]){
-                u=dis[j];
-                p=j;
-            }
-        }
-        vis[p]=1;
-        for(int j=1;j&lt;=n;j++){
-            if(!vis[j]&amp;&amp;dis[j]&gt;dis[p]+Map[p][j]){
-                dis[j]=dis[p]+Map[p][j];
-            }
-        }
-    }
+<h2 id="查询">查询</h2>
+<pre><code>int Query(int l,int r)
+{
+    int k=log2(r-l+1); 
+    return max(Max[l][k],Max[r-(1&lt;&lt;k)+1][k]);
 }
 </code></pre>
 
@@ -156,9 +112,9 @@ int main(){
               <div class="next">
                 下一篇
               </div>
-              <a href="https://1033180517.github.io/post/zui-xiao-sheng-cheng-shu/">
+              <a href="https://1033180517.github.io/post/tu-bao/">
                 <h3 class="post-title">
-                  最小生成树（模板）
+                  凸包
                 </h3>
               </a>
             </div>
@@ -267,7 +223,7 @@ int main(){
           算法
         </a>
       
-        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge secondary">
+        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge ">
           笔记
         </a>
       

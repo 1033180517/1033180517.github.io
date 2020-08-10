@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://1033180517.github.io</id>
     <title>Xiaoze&apos;s blog</title>
-    <updated>2020-08-01T08:06:26.984Z</updated>
+    <updated>2020-08-10T02:42:29.183Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://1033180517.github.io"/>
     <link rel="self" href="https://1033180517.github.io/atom.xml"/>
@@ -10,6 +10,32 @@
     <logo>https://1033180517.github.io/images/avatar.png</logo>
     <icon>https://1033180517.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Xiaoze&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[ST表]]></title>
+        <id>https://1033180517.github.io/post/st-biao/</id>
+        <link href="https://1033180517.github.io/post/st-biao/">
+        </link>
+        <updated>2020-08-10T02:37:35.000Z</updated>
+        <content type="html"><![CDATA[<p>解决RMQ问题（区间最值问题）<br>
+O(nlogn）预处理，O(1)查询</p>
+<p>利用倍增思想，用Max[i][j]表示从i位置开始2^j个数的最大值<br>
+转移的时候分成两个区间各自取值</p>
+<p>查询的时候 先算出log2（区间长度）为k<br>
+对l点和r-2^k+1进行查询即可</p>
+<h2 id="预处理">预处理</h2>
+<pre><code>for(int j=1;j&lt;=21;j++)
+        for(int i=1;i+(1&lt;&lt;j)-1&lt;=N;i++)
+            Max[i][j]=max(Max[i][j-1],Max[i+(1&lt;&lt;(j-1))][j-1]);
+</code></pre>
+<h2 id="查询">查询</h2>
+<pre><code>int Query(int l,int r)
+{
+    int k=log2(r-l+1); 
+    return max(Max[l][k],Max[r-(1&lt;&lt;k)+1][k]);
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[凸包]]></title>
         <id>https://1033180517.github.io/post/tu-bao/</id>
@@ -106,6 +132,7 @@ for(auto t:v){
 int tm=m&gt;=3?(m-2):(m+10);<br>
 int ty=m&gt;=3?y:(y-1);<br>
 return (ty+ty/4-ty/100+ty/400+(int)(2.6*tm-0.2)+d)%7;<br>
+//星期日输出0<br>
 }</p>
 ]]></content>
     </entry>
@@ -662,32 +689,6 @@ int main(){
     }
     ans*=x; ans%=z;
     cout&lt;&lt;ans&lt;&lt;endl;
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[线性筛素数（模板）]]></title>
-        <id>https://1033180517.github.io/post/xian-xing-shai-su-shu/</id>
-        <link href="https://1033180517.github.io/post/xian-xing-shai-su-shu/">
-        </link>
-        <updated>2020-07-07T16:17:39.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>const ll N = 10000050;   
-ll prime[N] = {0};    //记录质数
-ll num_prime =0;     //表示质数数量
-int isNotPrime[N] = {1, 1};    //记录n是否为质数  
-
-int main(){     
-    for(ll i=2;i&lt;N;i++){
-        if(!isNotPrime[i]){        // i为质数，则记录
-            prime[num_prime++]=i;
-        }    
-        for(ll j=0;j&lt;num_prime&amp;&amp;i*prime[j]&lt;N;j++){    // 质数*i为合数，记录
-            isNotPrime[i * prime[j]] = 1;  
-                if(!(i%prime[j]))  //防止重复筛选       
-                    break;           
-        }           
-    }       
 }
 </code></pre>
 ]]></content>
