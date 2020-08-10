@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://1033180517.github.io</id>
     <title>Xiaoze&apos;s blog</title>
-    <updated>2020-08-10T02:42:29.183Z</updated>
+    <updated>2020-08-10T07:56:20.252Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://1033180517.github.io"/>
     <link rel="self" href="https://1033180517.github.io/atom.xml"/>
@@ -10,6 +10,51 @@
     <logo>https://1033180517.github.io/images/avatar.png</logo>
     <icon>https://1033180517.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Xiaoze&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[数论]]></title>
+        <id>https://1033180517.github.io/post/shu-lun/</id>
+        <link href="https://1033180517.github.io/post/shu-lun/">
+        </link>
+        <updated>2020-08-10T06:34:30.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="费马小定理">费马小定理</h2>
+<p>如果一个数p是质数，那么有<br>
+a ^ (p - 1) ≡ 1 (mod p)<br>
+a ^ p ≡ a (mod p)</p>
+<h2 id="拓展欧几里德算法">拓展欧几里德算法</h2>
+<p>存在整数对(x,y),使得 gcd(a, b) = ax + by，求解x,y<br>
+时间复杂度O(logn)</p>
+<pre><code>//递归代码  
+int exgcd(int a, int b, int&amp;x, int&amp;y) {  
+    if (b == 0) {  
+        x = 1;  
+        y = 0;  
+        return a;  
+    }  
+    int r = exgcd(b, a%b, y, x);  
+    int t = x;  
+    y = y - a/b*t;  
+    return r;  
+}
+// 非递归算法  
+int exgcd(int m, int n, int &amp;x, int &amp;y) {  
+    int x1, y1, x0, y0;  
+    x0 = 1; y0 = 0;  
+    x1 = 0; y1 = 1;  
+    x = 0; y = 1;  
+    int r = m%n;  
+    int q = (m-r)/n;  
+    while(r) {  
+        x = x0 - q*x1;  
+        y = y0 - q*y1;  
+        x0 = x1; y0 = y1;  
+        x1 = x; y1 = y;  
+        m = n; n = r; r = m%n;  
+        q = (m-r)/n;  
+    }  
+    return n;
+}</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ST表]]></title>
         <id>https://1033180517.github.io/post/st-biao/</id>
@@ -74,7 +119,6 @@ O(nlogn）预处理，O(1)查询</p>
         <summary type="html"><![CDATA[<h2 id="你们这些搞acm的-能找到女朋友吗">你们这些搞acm的 ，能找到女朋友吗？</h2>
 <p>先上个紫，没什么问题吧。。</p>
 <p>###############<br>
-凸包<br>
 分数取模<br>
 hash表<br>
 KMP<br>
@@ -90,7 +134,6 @@ LCS，三角剖分<br>
         <content type="html"><![CDATA[<h2 id="你们这些搞acm的-能找到女朋友吗">你们这些搞acm的 ，能找到女朋友吗？</h2>
 <p>先上个紫，没什么问题吧。。</p>
 <p>###############<br>
-凸包<br>
 分数取模<br>
 hash表<br>
 KMP<br>
@@ -664,33 +707,6 @@ ll query(int o,int l,int r,int ql,int qr){
 <p>HDU – 1556</p>
 <p>luogu – P3372</p>
 <p>luogu – P3373 (算到自闭)</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[快速幂（模板）]]></title>
-        <id>https://1033180517.github.io/post/kuai-su-mi/</id>
-        <link href="https://1033180517.github.io/post/kuai-su-mi/">
-        </link>
-        <updated>2020-07-07T16:40:26.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>ll b,p,k,ans=1;
-ll x,y,z;
-
-int main(){
-    cin&gt;&gt;b&gt;&gt;p&gt;&gt;k;
-    x=b;y=p;z=k;
-    while(y&gt;1){
-        if(y%2==0){
-            x*=x; y/=2; x%=z;
-        }
-        else{
-            ans*=x; ans%=z;
-            x*=x; y/=2; x%=z;
-        }
-    }
-    ans*=x; ans%=z;
-    cout&lt;&lt;ans&lt;&lt;endl;
-}
-</code></pre>
 ]]></content>
     </entry>
 </feed>

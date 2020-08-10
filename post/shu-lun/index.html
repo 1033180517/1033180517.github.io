@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>acm笔记（持续更新） | Xiaoze&#39;s blog</title>
+<title>数论 | Xiaoze&#39;s blog</title>
 <meta name="description" content="my blog">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -73,63 +73,50 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>acm笔记（持续更新）</h1>
+            <h1>数论</h1>
             <p class="article-meta">
-              2020-07-08
-              
-                <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge warning">
-                  笔记
-                </a>
+              2020-08-10
               
             </p>
             
             <div class="post-content">
-              <h2 id="你们这些搞acm的-能找到女朋友吗">你们这些搞acm的 ，能找到女朋友吗？</h2>
-<p>先上个紫，没什么问题吧。。</p>
-<p>###############<br>
-分数取模<br>
-hash表<br>
-KMP<br>
-###############<br>
-二分图匹配，最小路径覆盖<br>
-网络流，最小费用流<br>
-LCS，三角剖分<br>
-博弈树，二进制法<br>
-最大团，最大独立集<br>
-判断点在多边形内<br>
-差分约束系统</p>
-<!-- more -->
-<h1 id="set">Set</h1>
-<p>函数<br>
-begin(), end(), clear(), empty(), insert(), erase(it), size()</p>
-<p>迭代器<br>
-set<int>::iterator it;</p>
-<p>自定义比较器</p>
-<pre><code>struct cmp{
-    bool operator()(const int &amp;a, const int &amp;b) const{
-        if(a&gt;b)
-            return 1;
-        return 0;
-    }
-};
-set &lt;int, cmp&gt; s;
-</code></pre>
-<!-- more -->
-<h1 id="vector">Vector</h1>
-<pre><code>vector&lt;int&gt;v;
-v.resize(n);
-for(auto t:v){
-    //
+              <h2 id="费马小定理">费马小定理</h2>
+<p>如果一个数p是质数，那么有<br>
+a ^ (p - 1) ≡ 1 (mod p)<br>
+a ^ p ≡ a (mod p)</p>
+<h2 id="拓展欧几里德算法">拓展欧几里德算法</h2>
+<p>存在整数对(x,y),使得 gcd(a, b) = ax + by，求解x,y<br>
+时间复杂度O(logn)</p>
+<pre><code>//递归代码  
+int exgcd(int a, int b, int&amp;x, int&amp;y) {  
+    if (b == 0) {  
+        x = 1;  
+        y = 0;  
+        return a;  
+    }  
+    int r = exgcd(b, a%b, y, x);  
+    int t = x;  
+    y = y - a/b*t;  
+    return r;  
 }
-</code></pre>
-<h1 id="回指定日期是星期几的函数">回指定日期是星期几的函数</h1>
-<p>int weekday(int y,int m,int d)<br>
-{<br>
-int tm=m&gt;=3?(m-2):(m+10);<br>
-int ty=m&gt;=3?y:(y-1);<br>
-return (ty+ty/4-ty/100+ty/400+(int)(2.6*tm-0.2)+d)%7;<br>
-//星期日输出0<br>
-}</p>
+// 非递归算法  
+int exgcd(int m, int n, int &amp;x, int &amp;y) {  
+    int x1, y1, x0, y0;  
+    x0 = 1; y0 = 0;  
+    x1 = 0; y1 = 1;  
+    x = 0; y = 1;  
+    int r = m%n;  
+    int q = (m-r)/n;  
+    while(r) {  
+        x = x0 - q*x1;  
+        y = y0 - q*y1;  
+        x0 = x1; y0 = y1;  
+        x1 = x; y1 = y;  
+        m = n; n = r; r = m%n;  
+        q = (m-r)/n;  
+    }  
+    return n;
+}</code></pre>
 
             </div>
           </article>
@@ -140,9 +127,9 @@ return (ty+ty/4-ty/100+ty/400+(int)(2.6*tm-0.2)+d)%7;<br>
               <div class="next">
                 下一篇
               </div>
-              <a href="https://1033180517.github.io/post/zui-da-liu/">
+              <a href="https://1033180517.github.io/post/st-biao/">
                 <h3 class="post-title">
-                  最大流（模板）
+                  ST表
                 </h3>
               </a>
             </div>
@@ -253,11 +240,11 @@ return (ty+ty/4-ty/100+ty/400+(int)(2.6*tm-0.2)+d)%7;<br>
           算法
         </a>
       
-        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge warning">
+        <a href="https://1033180517.github.io/tag/ey0dVyOHV/" class="badge success">
           笔记
         </a>
       
-        <a href="https://1033180517.github.io/tag/8RVXQ2hex/" class="badge success">
+        <a href="https://1033180517.github.io/tag/8RVXQ2hex/" class="badge secondary">
           模板
         </a>
       
