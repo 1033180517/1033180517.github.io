@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>模板 | Xiaoze&#39;s blog</title>
+<title>二分图匹配 （模板） | Xiaoze&#39;s blog</title>
 <meta name="description" content="my blog">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,6 +23,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://1033180517.github.io">Xiaoze&#39;s blog</a></h3>
@@ -71,48 +72,69 @@
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          <h2 class="current-tag">标签: 模板</h2>
-          
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://1033180517.github.io/post/xian-duan-shu/">线段树（模板）</a>
-    </h2>
-    <p class="article-meta">
-      2020-07-08
-      
-        <a href="https://1033180517.github.io/tag/8RVXQ2hex/" class="badge success">
-          模板
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://1033180517.github.io/post/xian-duan-shu/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
+          <article class="article">
+            <h1>二分图匹配 （模板）</h1>
+            <p class="article-meta">
+              2020-08-29
+              
+                <a href="https://1033180517.github.io/tag/8RVXQ2hex/" class="badge success">
+                  模板
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <pre><code>int n, m, t; //左图结点数，右图结点数，边数
+int mch[1005], vistime[1005];
+vector&lt;int&gt;e[1005];
 
+bool dfs(int u, int tag) {
+    if (vistime[u] == tag)
+        return 0;
+    vistime[u] = tag;
+    for(int i=0;i&lt;e[u].size();i++){
+        int v=e[u][i];
+        if((mch[v] == 0)||dfs(mch[v], tag)) {
+            mch[v] = u;
+            return 1;
+        }
+    }
+return 0;
+}
 
+int main() {
+    scanf(&quot;%d %d %d&quot;, &amp;n, &amp;m, &amp;t);
+    for (int u, v; t; --t) {
+        scanf(&quot;%d %d&quot;, &amp;u, &amp;v);
+        e[u].push_back(v);
+    }
+    int ans = 0;
+    for(int i = 1; i &lt;= n; ++i) 
+        if(dfs(i, i))
+            ++ans;
+    printf(&quot;%d\n&quot;, ans);
+}</code></pre>
+
+            </div>
+          </article>
         </div>
-        <div class="row flex-edges">
-  
-    <a href="https://1033180517.github.io/tag/8RVXQ2hex/page/6/" class="paper-btn">
-      上一页
-    </a>
-  
-  
-    <a href="https://1033180517.github.io/tag/8RVXQ2hex/page/8/" class="paper-btn">
-      下一页
-    </a>
-  
-</div>
-
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://1033180517.github.io/post/shu-lun/">
+                <h3 class="post-title">
+                  数论
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
       </div>
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://1033180517.github.io/images/avatar.png?v=1598686739076" class="no-responsive avatar">
@@ -217,7 +239,7 @@
           模板
         </a>
       
-        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge secondary">
+        <a href="https://1033180517.github.io/tag/cB5YMYJVT/" class="badge ">
           算法
         </a>
       
@@ -231,6 +253,7 @@
     Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://1033180517.github.io/atom.xml" target="_blank">RSS</a>
   </div>
 </div>
+
 
     </div>
 

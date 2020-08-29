@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://1033180517.github.io</id>
     <title>Xiaoze&apos;s blog</title>
-    <updated>2020-08-10T07:56:20.252Z</updated>
+    <updated>2020-08-29T07:39:02.970Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://1033180517.github.io"/>
     <link rel="self" href="https://1033180517.github.io/atom.xml"/>
@@ -10,6 +10,44 @@
     <logo>https://1033180517.github.io/images/avatar.png</logo>
     <icon>https://1033180517.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Xiaoze&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[二分图匹配 （模板）]]></title>
+        <id>https://1033180517.github.io/post/er-fen-tu-pi-pei-mo-ban/</id>
+        <link href="https://1033180517.github.io/post/er-fen-tu-pi-pei-mo-ban/">
+        </link>
+        <updated>2020-08-29T07:37:34.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>int n, m, t; //左图结点数，右图结点数，边数
+int mch[1005], vistime[1005];
+vector&lt;int&gt;e[1005];
+
+bool dfs(int u, int tag) {
+    if (vistime[u] == tag)
+        return 0;
+    vistime[u] = tag;
+    for(int i=0;i&lt;e[u].size();i++){
+        int v=e[u][i];
+        if((mch[v] == 0)||dfs(mch[v], tag)) {
+            mch[v] = u;
+            return 1;
+        }
+    }
+return 0;
+}
+
+int main() {
+    scanf(&quot;%d %d %d&quot;, &amp;n, &amp;m, &amp;t);
+    for (int u, v; t; --t) {
+        scanf(&quot;%d %d&quot;, &amp;u, &amp;v);
+        e[u].push_back(v);
+    }
+    int ans = 0;
+    for(int i = 1; i &lt;= n; ++i) 
+        if(dfs(i, i))
+            ++ans;
+    printf(&quot;%d\n&quot;, ans);
+}</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[数论]]></title>
         <id>https://1033180517.github.io/post/shu-lun/</id>
@@ -120,7 +158,6 @@ O(nlogn）预处理，O(1)查询</p>
 <p>先上个紫，没什么问题吧。。</p>
 <p>###############<br>
 分数取模<br>
-hash表<br>
 KMP<br>
 ###############<br>
 二分图匹配，最小路径覆盖<br>
@@ -135,7 +172,6 @@ LCS，三角剖分<br>
 <p>先上个紫，没什么问题吧。。</p>
 <p>###############<br>
 分数取模<br>
-hash表<br>
 KMP<br>
 ###############<br>
 二分图匹配，最小路径覆盖<br>
@@ -590,123 +626,6 @@ int kmp(){
     return ans;
 }
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[线段树（模板）]]></title>
-        <id>https://1033180517.github.io/post/xian-duan-shu/</id>
-        <link href="https://1033180517.github.io/post/xian-duan-shu/">
-        </link>
-        <updated>2020-07-07T16:41:22.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>ll n,m;
-ll value[400002];
-ll data[200002];
-ll lazy[400002];
-
-//首先建树
-void build(int o,int l,int r){        
-    if(l==r){
-        value[o]=data[l];
-        return ;
-    }
-    ll m=(l+r)/2;
-    build(o*2,l,m);
-    build(o*2+1,m+1,r);
-    value[o]=max(value[o*2],value[o*2+1]);
-}
-单点更新+区间查询 
-
-//单点更新，将x的value改为d
-void update(int o,int l,int r,int x,int d){      
-    if(l==r){
-        value[o]=d;
-        return ;
-    }
-    int m=(l+r)/2;
-    if(x&lt;=m)update(o*2,l,m,x,d);
-    if(m+1&lt;=x)update(o*2+1,m+1,r,x,d);
-    value[o]=max(value[o*2],value[o*2+1]);
-}
-
-//查询区间[ql,qr]的最大值
-int query(int o,int l,int r,int ql,int qr){       
-    if(ql&lt;=l&amp;&amp;r&lt;=qr)return value[o];
-    int m=(l+r)/2;
-    int ans=0;
-    if(ql&lt;=m){
-        ans=max(ans,query(o*2,l,m,ql,qr));
-    }
-    if(qr&gt;=m+1){
-        ans=max(ans,query(o*2+1,m+1,r,ql,qr));
-    }
-    return ans;
-}
-区间更新+区间和查询
-
-//为区间[l,r]增加lazy标记d
-
-void free(int o,int l,int r,int d){      
-    lazy[o]+=d;
-    value[o]+=d*(r-l+1);
-}
-
-//将lazy标记向下传递
-
-void lazy_down(int o,int l,int r){       
-    if(!lazy[o])return ;
-    int m=(l+r)/2;
-    free(o*2,l,m,lazy[o]);
-    free(o*2+1,m+1,r,lazy[o]);
-    lazy[o]=0;
-}
-
-//维护lazy的父节点
-
-void push_up(int o){      
-    value[o]=value[o*2]+value[o*2+1];
-}
-
-//区间更新，[ql,qr]每个数都增加d
-
-void update(int o,int l,int r,int ql,int qr,int d){     
-    if(ql&lt;=l&amp;&amp;r&lt;=qr){
-        free(o,l,r,d);
-        return ;
-    }
-    lazy_down(o,l,r);    
-    int m=(l+r)/2;
-    if(ql&lt;=m){
-        update(o*2,l,m,ql,qr,d);
-    }
-    if(qr&gt;=m+1){
-        update(o*2+1,m+1,r,ql,qr,d);
-    }
-    push_up(o);
-}
-
-//区间查询,[ql,qr]之和 
-
-ll query(int o,int l,int r,int ql,int qr){     
-    if(ql&lt;=l&amp;&amp;r&lt;=qr){
-        return value[o];
-    }
-    lazy_down(o,l,r);
-    ll ans=0;
-    int m=(l+r)/2;
-    if(ql&lt;=m){
-        ans+=query(o*2,l,m,ql,qr);
-    }
-    if(qr&gt;=m+1){
-        ans+=query(o*2+1,m+1,r,ql,qr);
-    }
-    return ans;
-}
-</code></pre>
-<p>例题</p>
-<p>HDU – 1754</p>
-<p>HDU – 1556</p>
-<p>luogu – P3372</p>
-<p>luogu – P3373 (算到自闭)</p>
 ]]></content>
     </entry>
 </feed>
